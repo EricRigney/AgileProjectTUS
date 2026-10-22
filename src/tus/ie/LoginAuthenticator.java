@@ -11,7 +11,8 @@ public class LoginAuthenticator {
 		accounts.put("admin", "admin123");
 		accounts.put("student", "java123");
 	}
-
+	
+	// Checks for the right username and password
 	public boolean authenticate(String username, String password) {
 		String correctPassword = accounts.get(username);
 
