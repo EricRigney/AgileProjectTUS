@@ -220,9 +220,32 @@ public class LoginSystem extends JFrame {
 			}
 		}
 	}
-				
-				
 	
+	// Forgot Password feature
+	
+	private void forgotpassword() {
+		
+		JTextField resetUsername = new JTextField();
+		JPasswordField newPassword = new JPasswordField();
+		JPasswordField confirmPassword = new JPasswordField();
+		
+		resetUsername.setPreferredSize(new Dimension(220,30));
+		newPassword.setPreferredSize(new Dimension(220,30));
+		confirmPassword.setPreferredSize(new Dimension(220,30));
+
+		Object[] fields = { "Enter your username:", resetUsername, "Enter your new Password", newPassword, "Confirm your new password", confirmPassword};
+		
+		int result = JOptionPane.showConfirmDialog(this, fields, "Reset Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		if(result != JOptionPane.OK_OPTION) {
+			return;
+		}
+		
+		String username = resetUsername.getText().trim();
+		String newPass = new String (newPassword.getPassword());
+		
+		String confrimPass = new String(confirmPassword.getPassword());
+		
+		
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
