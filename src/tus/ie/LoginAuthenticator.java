@@ -24,6 +24,9 @@ public class LoginAuthenticator {
 		return accounts.containsKey(username);
 	}
 	
+	// Change the password for an existing account
+	
+	
 	
 	
 	/*
