@@ -266,6 +266,13 @@ public class LoginSystem extends JFrame {
 			return;
 		}
 		
+		// Requires a Minimum Password Length
+		if(newPass.length() < 6) {
+			JOptionPane.showMessageDialog(this,  "The new password must contain at least 6 characters", "Password Too Short", JOptionPane.ERROR_MESSAGE);
+		
+			return;
+		}
+		
 		
 		
 	public static void main(String[] args) {
