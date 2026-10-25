@@ -173,7 +173,43 @@ public class LoginSystem extends JFrame {
 			messageLabel.setText("Please enter your username and password");
 			return;
 		}
+		
+		// Validate Login details
+		if (authenticator.authenticate(username,  password)) {
+			messageLabel.setForeground(new Color(20,145,80));
+			messageLabel.setText("Login Successful!");
+			
+			JOptionPane.showMessageDialog(this, "Welcome" + username + "!\nYour login was successful.", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
+			
+			// This are will be for the booking screen which will be added later in the project
+			
+		}else {
+			loginAttempts.recordFailedAttempt();
+			passwordField.setText("");
+			
+			if(loginAttempts.isLockedOut()) {
+				messageLabel.setForeground(new Color(200,45,55));
+				messageLabel.setText("Account locked. No attempts remianing");
+				
+				loginButton.setEnabled(false);
+				usernameField.setEnabled(false);
+				passwordField.setEnabled(false);
+				
+				JOptionPane.showMessageDialog(this,"You have entered incorrect details" + "three times.\nAcess Denied", "Account Locked", JOptionPane.ERROR_MESSAGE);
+			} else { 
+				messageLabel.setForeground( new Color(200,45,55));
+				messageLabel.setText("Incorrect details. Attempts remaining:" + loginAttempts.getAttemptsRemaining());
+			}
+		}
+	}
+				
+				
+	
 
 	public static void main(String[] args) {
-		
+		SwingUtilities.invokeLater(() -> {
+			LoginSystem window = new LoginSystem();
+			window.setVisible(true);
+		});
+	}
 }
