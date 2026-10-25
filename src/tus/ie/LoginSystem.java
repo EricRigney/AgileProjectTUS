@@ -156,6 +156,8 @@ public class LoginSystem extends JFrame {
 		// Button Actions
 		loginButton.addActionListener(e -> login());
 		passwordField.addActionListener(e -> login());
+		forgotButton.addActionListener(e -> login());
+
 	}
 
 	private void styleLabel(JLabel label) {
