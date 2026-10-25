@@ -150,32 +150,30 @@ public class LoginSystem extends JFrame {
 
 	private void styleField(JTextField field) {
 		field.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		field.setPreferredSize( new Dimension(300, 40));
-		field.setMaximumSize( new Dimension(Integer.MAX_VALUE, 40));
+		field.setPreferredSize(new Dimension(300, 40));
+		field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
 		field.setAlignmentX(Component.LEFT_ALIGNMENT);
-	
-		field.setBorder(BorderFactory.createCompoundBorder( 
-				BorderFactory.createLineBorder(new Color(210,218,230)), 
-				new EmptyBorder(8,10,8,10)));
+
+		field.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(210, 218, 230)),
+				new EmptyBorder(8, 10, 8, 10)));
 	}
+
+	private void login() {
+		if(loginAttempts.isLockedOut()) {
+			return;
+		}
+	
+		String username = usernameField.getText().trim();
+		String password = new String(passwordField.getPassword());
 		
-	
-
-	if(username.isEmpty()||password.isEmpty())
-
-	{
-		JOptionPane.showMessageDialog(enter, "Please enter your username and password");
-
-	}else
-	{
-		JOptionPane.showMessageDialog(enter, "Login button pressed");
-
-	}
-
-	});
-
-	}
+		// Check for empty Fields
+		if(username.isEmpty() || password.isEmpty()) {
+			messageLabel.setForeground(new Color (200,45,55));
+			
+			messageLabel.setText("Please enter your username and password");
+			return;
+		}
 
 	public static void main(String[] args) {
-
+		
 }
