@@ -299,6 +299,8 @@ public class LoginSystem extends JFrame {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
 			LoginSystem window = new LoginSystem();
+			
+			window.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			window.setVisible(true);
 		});
 	}
