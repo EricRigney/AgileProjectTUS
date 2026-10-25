@@ -245,8 +245,29 @@ public class LoginSystem extends JFrame {
 		
 		String confrimPass = new String(confirmPassword.getPassword());
 		
+		// Validate Empty Fields
+		if(username.isEmpty() || newPass.isEmpty() || confrimPass.isEmpty()) {
+			JOptionPane.showMessageDialog(this,  "Please complete all fields.", "Missing Details", JOptionPane.WARNING_MESSAGE);
+			
+			return;
+		}
 		
-
+		// Check that the account exists
+		if(!authenticator.accountExists(username)) {
+			JOptionPane.showMessageDialog(this,  "Username not found", "Reset Failed", JOptionPane.ERROR_MESSAGE);
+		
+			return;
+		}
+		
+		// Confirm passwords match
+		if(!newPass.equals(confrimPass)) {
+			JOptionPane.showMessageDialog(this,  "The password does not match", "Reset Failed", JOptionPane.ERROR_MESSAGE);
+		
+			return;
+		}
+		
+		
+		
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
 			LoginSystem window = new LoginSystem();
