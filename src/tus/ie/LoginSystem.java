@@ -136,13 +136,12 @@ public class LoginSystem extends JFrame {
 		mainPanel.add(cardContainer, BorderLayout.CENTER);
 		
 		add(mainPanel);
+		
+		// Button Actions
+		loginButton.addActionListener(e -> login());
+		passwordField.addActionListener(e -> login());
 	}
 
-		
-		
-		loginButton.addActionListener(e -> login());
-		String username = usernameField.getText();
-		String password = passwordField.getText();
 		
 		if (username.isEmpty() || password.isEmpty()) {
 			JOptionPane.showMessageDialog(enter, "Please enter your username and password");
