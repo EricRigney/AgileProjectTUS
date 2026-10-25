@@ -179,7 +179,7 @@ public class LoginSystem extends JFrame {
 			messageLabel.setForeground(new Color(20,145,80));
 			messageLabel.setText("Login Successful!");
 			
-			JOptionPane.showMessageDialog(this, "Welcome" + username + "!\nYour login was successful.", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Welcome " + username + "!\nYour login was successful.", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
 			
 			// This are will be for the booking screen which will be added later in the project
 			
@@ -195,7 +195,7 @@ public class LoginSystem extends JFrame {
 				usernameField.setEnabled(false);
 				passwordField.setEnabled(false);
 				
-				JOptionPane.showMessageDialog(this,"You have entered incorrect details" + "three times.\nAcess Denied", "Account Locked", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this,"You have entered incorrect details" + "three times.\nAcess Denied", " Account Locked", JOptionPane.ERROR_MESSAGE);
 			} else { 
 				messageLabel.setForeground( new Color(200,45,55));
 				messageLabel.setText("Incorrect details. Attempts remaining:" + loginAttempts.getAttemptsRemaining());

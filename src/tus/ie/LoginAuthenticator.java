@@ -18,7 +18,14 @@ public class LoginAuthenticator {
 
 		return correctPassword != null && correctPassword.equals(password);
 	}
-
+	
+	// Check whether an account exists
+	public boolean accountExists(String username) {
+		return accounts.containsKey(username);
+	}
+	
+	
+	
 	/*
 	 * public boolean authenticate(String username, String password) {
 	 * 
