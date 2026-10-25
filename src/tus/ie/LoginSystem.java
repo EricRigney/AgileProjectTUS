@@ -95,6 +95,16 @@ public class LoginSystem extends JFrame {
 		loginButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 43));
 
 		loginButton.setPreferredSize(new Dimension(300, 43));
+		
+		// Forgot Password Button
+		JButton forgotButton = new JButton("Forgot Button");
+		forgotButton.setFont(new Font("SanaSerif", Font.PLAIN,12));
+		forgotButton.setForeground(BLUE);
+		forgotButton.setBorderPainted(false);
+		forgotButton.setContentAreaFilled(false);
+		forgotButton.setFocusPainted(false);
+		forgotButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		forgotButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
 		messageLabel = new JLabel(" ");
 		messageLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
