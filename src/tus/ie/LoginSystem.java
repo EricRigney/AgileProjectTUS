@@ -97,7 +97,7 @@ public class LoginSystem extends JFrame {
 		loginButton.setPreferredSize(new Dimension(300, 43));
 
 		// Forgot Password Button
-		JButton forgotButton = new JButton("Forgot Button");
+		JButton forgotButton = new JButton("Forgot Password");
 		forgotButton.setFont(new Font("SanaSerif", Font.PLAIN, 12));
 		forgotButton.setForeground(BLUE);
 		forgotButton.setBorderPainted(false);
@@ -283,17 +283,16 @@ public class LoginSystem extends JFrame {
 
 		// Update the Password
 		boolean updated = authenticator.resetPassword(username, newPass);
-		
+
 		if (updated) {
-			JOptionPane.showMessageDialog(this, "Your Password has been changed Successfully.|n" +
-					"You can now sign in with your new password","Password Updated", JOptionPane.INFORMATION_MESSAGE);
-			
+			JOptionPane.showMessageDialog(this,
+					"Your Password has been changed Successfully.|n" + "You can now sign in with your new password",
+					"Password Updated", JOptionPane.INFORMATION_MESSAGE);
+
 			usernameField.setText(username);
 			passwordField.setText("");
 			messageLabel.setText(" ");
 		}
-
-	
 
 	}
 
