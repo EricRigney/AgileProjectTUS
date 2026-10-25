@@ -1,11 +1,35 @@
 package tus.ie;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class LoginSystem {
+public class LoginSystem extends JFrame {
+	
+	private JTextField usernameField;
+	private JPasswordField passwordField;
+	private JButton loginButton;
+	private JLabel messageLabel;
+	private LoginAuthenticator authenticator;
+	private LoginAttempts loginAttempts
+	
+	private final Color NAVY = new Color(18,32,58);
+	private final Color BLUE = new Color(45,105,230);
+	private final Color LIGHT = new Color(245,247,252);
+	private final Color GREY = new Color(105,116,135);
 
-	public static void main(String[] args) {
+	public LoginSystem() {
+		
+		authenticator = new LoginAuthenticator();
+		loginAttempts = new LoginAttempts();
+		
+		setTitle("EventPass - Login");
+		setSize(460,520);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
+	}
+
 		
 	JFrame enter = new JFrame("Login System");
 	enter.setSize(400,350);
@@ -51,5 +75,7 @@ public class LoginSystem {
 	});
 	
 	}
+	
+	public static void main(String[] args) {
 
 }
