@@ -186,7 +186,7 @@ public class LoginSystem extends JFrame {
 		
 		// Check for empty Fields
 		if(username.isEmpty() || password.isEmpty()) {
-			messageLabel.setForeground(new Color (200,45,55));
+			messageLabel.setForeground(RED);
 			
 			messageLabel.setText("Please enter your username and password");
 			return;
@@ -194,7 +194,7 @@ public class LoginSystem extends JFrame {
 		
 		// Validate Login details
 		if (authenticator.authenticate(username,  password)) {
-			messageLabel.setForeground(new Color(20,145,80));
+			messageLabel.setForeground(GREEN);
 			messageLabel.setText("Login Successful!");
 			
 			JOptionPane.showMessageDialog(this, "Welcome " + username + "!\nYour login was successful.", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
@@ -206,7 +206,7 @@ public class LoginSystem extends JFrame {
 			passwordField.setText("");
 			
 			if(loginAttempts.isLockedOut()) {
-				messageLabel.setForeground(new Color(200,45,55));
+				messageLabel.setForeground(RED);
 				messageLabel.setText("Account locked. No attempts remianing");
 				
 				loginButton.setEnabled(false);
@@ -215,7 +215,7 @@ public class LoginSystem extends JFrame {
 				
 				JOptionPane.showMessageDialog(this,"You have entered incorrect details" + "three times.\nAcess Denied", " Account Locked", JOptionPane.ERROR_MESSAGE);
 			} else { 
-				messageLabel.setForeground( new Color(200,45,55));
+				messageLabel.setForeground(RED);
 				messageLabel.setText("Incorrect details. Attempts remaining:" + loginAttempts.getAttemptsRemaining());
 			}
 		}
