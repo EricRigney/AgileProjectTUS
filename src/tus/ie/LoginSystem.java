@@ -17,6 +17,8 @@ public class LoginSystem extends JFrame {
 	private final Color BLUE = new Color(45, 105, 230);
 	private final Color LIGHT = new Color(245, 247, 252);
 	private final Color GREY = new Color(105, 116, 135);
+	private final Color RED = new Color(200, 45, 55);
+	private final Color GREEN = new Color(20, 145, 85);
 
 	public LoginSystem() {
 
@@ -45,12 +47,13 @@ public class LoginSystem extends JFrame {
 		logo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		JLabel subtitle = new JLabel("Your Next Event Starts Here");
-		subtitle.setFont(new Font("SanSerif", Font.PLAIN, 11));
+		subtitle.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		subtitle.setForeground(new Color(195, 207, 225));
 		subtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		header.add(logo);
 		header.add(Box.createVerticalStrut(8));
+		header.add(subtitle);
 
 		// White Login Card
 		JPanel card = new JPanel();
@@ -81,7 +84,7 @@ public class LoginSystem extends JFrame {
 		styleField(passwordField);
 
 		loginButton = new JButton("Sign In");
-		loginButton.setFont(new Font("SanSerif", Font.BOLD, 15));
+		loginButton.setFont(new Font("SansSerif", Font.BOLD, 15));
 		loginButton.setForeground(Color.WHITE);
 		loginButton.setBackground(BLUE);
 		loginButton.setFocusPainted(false);
@@ -94,13 +97,13 @@ public class LoginSystem extends JFrame {
 		loginButton.setPreferredSize(new Dimension(300, 43));
 
 		messageLabel = new JLabel(" ");
-		messageLabel.setFont(new Font("SanSerif", Font.PLAIN, 12));
+		messageLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		messageLabel.setForeground(new Color(200, 45, 55));
 		messageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		// Footer
 		JLabel footer = new JLabel("Event Pass | Ticket Booking");
-		footer.setFont(new Font("SanSerif", Font.PLAIN, 10));
+		footer.setFont(new Font("SansSerif", Font.PLAIN, 10));
 		footer.setForeground(GREY);
 		footer.setAlignmentX(Component.CENTER_ALIGNMENT);
 
