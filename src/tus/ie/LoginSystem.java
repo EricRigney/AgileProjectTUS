@@ -52,7 +52,7 @@ public class LoginSystem extends JFrame {
 		header.add(logo);
 		header.add(Box.createVerticalStrut(8));
 		
-		//White Login Card
+		// White Login Card
 		JPanel card = new JPanel();
 		card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
 		card.setBackground(Color.WHITE);
@@ -80,40 +80,56 @@ public class LoginSystem extends JFrame {
 		passwordField = new JPasswordField();
 		styleLabel(passwordField);
 		
+		loginButton = new JButton("Sign In");
+		loginButton.setFont(new Font("SanSerif", Font.BOLD,15));
+		loginButton.setForeground(Color.WHITE);
+		loginButton.setBackground(BLUE);
+		loginButton.setFocusPainted(false);
+		loginButton.setBorderPainted(false);
+		loginButton.setCursor( new Cursor(Cursor.HAND_CURSOR));
+		
+		loginButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+		loginButton.setMaximumSize( new Dimension(Integer.MAX_VALUE, 43));
+		
+		loginButton.setPreferredSize(new Dimension(300,43));
+		
+		messageLabel = new JLabel(" ");
+		messageLabel.setFont( new Font("SanSerif", Font.PLAIN,12));
+		messageLabel.setForeground(new Color(200,45,55));
+		messageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
+		// Footer
+		JLabel footer = new JLabel("Event Pass | Ticket Booking");
+		footer.setFont( new Font("SanSerif", Font.PLAIN,10));
+		footer.setForeground(GREY);
+		footer.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		card.add(heading);
+		card.add(Box.createHorizontalStrut(5));
+		card.add(description);
+		card.add(Box.createHorizontalStrut(22));
+		
+		card.add(usernameLabel);
+		card.add(Box.createHorizontalStrut(6));
+		card.add(usernameField);
+		card.add(Box.createHorizontalStrut(16));
+		
+		card.add(passwordLabel);
+		card.add(Box.createHorizontalStrut(6));
+		card.add(passwordField);
+		card.add(Box.createHorizontalStrut(18));
+		
+		card.add(loginButton);
+		card.add(Box.createHorizontalStrut(10));
+		card.add(messageLabel);
+		card.add(Box.createHorizontalStrut(12));
+		card.add(footer);
 		
 		
 	}
 
 		
-	JFrame enter = new JFrame("Login System");
-	enter.setSize(400,350);
-	enter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	enter.setLocationRelativeTo(null);
-	
-	JPanel board = new JPanel();
-	board.setLayout(new GridLayout(7,2,6,6));
-	board.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-	
-	JLabel usernameLabel = new JLabel ("Username:");
-	JTextField usernameField = new JTextField();
-	
-	JLabel passwordLabel = new JLabel ("Password:");
-	JTextField passwordField = new JTextField();
-	
-	JButton loginButton = new JButton ("Login:");
-	
-	board.add(usernameLabel);
-	board.add(usernameField);
-	
-	board.add(passwordLabel);
-	board.add(passwordField);
-	
-	board.add(new JLabel(""));
-	board.add(loginButton);
-	
-	enter.add(board);
-	enter.setVisible(true);
-	
+		
 	loginButton.addActionListener(e -> {
 		String username = usernameField.getText();
 		String password = passwordField.getText();
