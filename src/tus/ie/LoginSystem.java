@@ -95,10 +95,10 @@ public class LoginSystem extends JFrame {
 		loginButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 43));
 
 		loginButton.setPreferredSize(new Dimension(300, 43));
-		
+
 		// Forgot Password Button
 		JButton forgotButton = new JButton("Forgot Button");
-		forgotButton.setFont(new Font("SanaSerif", Font.PLAIN,12));
+		forgotButton.setFont(new Font("SanaSerif", Font.PLAIN, 12));
 		forgotButton.setForeground(BLUE);
 		forgotButton.setBorderPainted(false);
 		forgotButton.setContentAreaFilled(false);
@@ -131,7 +131,7 @@ public class LoginSystem extends JFrame {
 		card.add(Box.createHorizontalStrut(6));
 		card.add(passwordField);
 		card.add(Box.createHorizontalStrut(18));
-		
+
 		card.add(forgotButton);
 		card.add(Box.createHorizontalStrut(12));
 
@@ -177,104 +177,126 @@ public class LoginSystem extends JFrame {
 	}
 
 	private void login() {
-		if(loginAttempts.isLockedOut()) {
+		if (loginAttempts.isLockedOut()) {
 			return;
 		}
-	
+
 		String username = usernameField.getText().trim();
 		String password = new String(passwordField.getPassword());
-		
+
 		// Check for empty Fields
-		if(username.isEmpty() || password.isEmpty()) {
+		if (username.isEmpty() || password.isEmpty()) {
 			messageLabel.setForeground(RED);
-			
+
 			messageLabel.setText("Please enter your username and password");
 			return;
 		}
-		
+
 		// Validate Login details
-		if (authenticator.authenticate(username,  password)) {
+		if (authenticator.authenticate(username, password)) {
 			messageLabel.setForeground(GREEN);
 			messageLabel.setText("Login Successful!");
-			
-			JOptionPane.showMessageDialog(this, "Welcome " + username + "!\nYour login was successful.", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
-			
-			// This are will be for the booking screen which will be added later in the project
-			
-		}else {
+
+			JOptionPane.showMessageDialog(this, "Welcome " + username + "!\nYour login was successful.",
+					"Login Successful", JOptionPane.INFORMATION_MESSAGE);
+
+			// This are will be for the booking screen which will be added later in the
+			// project
+
+		} else {
 			loginAttempts.recordFailedAttempt();
 			passwordField.setText("");
-			
-			if(loginAttempts.isLockedOut()) {
+
+			if (loginAttempts.isLockedOut()) {
 				messageLabel.setForeground(RED);
 				messageLabel.setText("Account locked. No attempts remianing");
-				
+
 				loginButton.setEnabled(false);
 				usernameField.setEnabled(false);
 				passwordField.setEnabled(false);
-				
-				JOptionPane.showMessageDialog(this,"You have entered incorrect details" + "three times.\nAcess Denied", " Account Locked", JOptionPane.ERROR_MESSAGE);
-			} else { 
+
+				JOptionPane.showMessageDialog(this, "You have entered incorrect details" + "three times.\nAcess Denied",
+						" Account Locked", JOptionPane.ERROR_MESSAGE);
+			} else {
 				messageLabel.setForeground(RED);
 				messageLabel.setText("Incorrect details. Attempts remaining:" + loginAttempts.getAttemptsRemaining());
 			}
 		}
 	}
-	
+
 	// Forgot Password feature
-	
+
 	private void forgotpassword() {
-		
+
 		JTextField resetUsername = new JTextField();
 		JPasswordField newPassword = new JPasswordField();
 		JPasswordField confirmPassword = new JPasswordField();
-		
-		resetUsername.setPreferredSize(new Dimension(220,30));
-		newPassword.setPreferredSize(new Dimension(220,30));
-		confirmPassword.setPreferredSize(new Dimension(220,30));
 
-		Object[] fields = { "Enter your username:", resetUsername, "Enter your new Password", newPassword, "Confirm your new password", confirmPassword};
-		
-		int result = JOptionPane.showConfirmDialog(this, fields, "Reset Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-		if(result != JOptionPane.OK_OPTION) {
+		resetUsername.setPreferredSize(new Dimension(220, 30));
+		newPassword.setPreferredSize(new Dimension(220, 30));
+		confirmPassword.setPreferredSize(new Dimension(220, 30));
+
+		Object[] fields = { "Enter your username:", resetUsername, "Enter your new Password", newPassword,
+				"Confirm your new password", confirmPassword };
+
+		int result = JOptionPane.showConfirmDialog(this, fields, "Reset Password", JOptionPane.OK_CANCEL_OPTION,
+				JOptionPane.PLAIN_MESSAGE);
+		if (result != JOptionPane.OK_OPTION) {
 			return;
 		}
-		
+
 		String username = resetUsername.getText().trim();
-		String newPass = new String (newPassword.getPassword());
-		
+		String newPass = new String(newPassword.getPassword());
+
 		String confrimPass = new String(confirmPassword.getPassword());
-		
+
 		// Validate Empty Fields
-		if(username.isEmpty() || newPass.isEmpty() || confrimPass.isEmpty()) {
-			JOptionPane.showMessageDialog(this,  "Please complete all fields.", "Missing Details", JOptionPane.WARNING_MESSAGE);
-			
+		if (username.isEmpty() || newPass.isEmpty() || confrimPass.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Please complete all fields.", "Missing Details",
+					JOptionPane.WARNING_MESSAGE);
+
 			return;
 		}
-		
+
 		// Check that the account exists
-		if(!authenticator.accountExists(username)) {
-			JOptionPane.showMessageDialog(this,  "Username not found", "Reset Failed", JOptionPane.ERROR_MESSAGE);
-		
+		if (!authenticator.accountExists(username)) {
+			JOptionPane.showMessageDialog(this, "Username not found", "Reset Failed", JOptionPane.ERROR_MESSAGE);
+
 			return;
 		}
-		
+
 		// Confirm passwords match
-		if(!newPass.equals(confrimPass)) {
-			JOptionPane.showMessageDialog(this,  "The password does not match", "Reset Failed", JOptionPane.ERROR_MESSAGE);
-		
+		if (!newPass.equals(confrimPass)) {
+			JOptionPane.showMessageDialog(this, "The password does not match", "Reset Failed",
+					JOptionPane.ERROR_MESSAGE);
+
 			return;
 		}
-		
+
 		// Requires a Minimum Password Length
-		if(newPass.length() < 6) {
-			JOptionPane.showMessageDialog(this,  "The new password must contain at least 6 characters", "Password Too Short", JOptionPane.ERROR_MESSAGE);
-		
+		if (newPass.length() < 6) {
+			JOptionPane.showMessageDialog(this, "The new password must contain at least 6 characters",
+					"Password Too Short", JOptionPane.WARNING_MESSAGE);
+
 			return;
 		}
+
+		// Update the Password
+		boolean updated = authenticator.resetPassword(username, newPass);
 		
-		
-		
+		if (updated) {
+			JOptionPane.showMessageDialog(this, "Your Password has been changed Successfully.|n" +
+					"You can now sign in with your new password","Password Updated", JOptionPane.INFORMATION_MESSAGE);
+			
+			usernameField.setText(username);
+			passwordField.setText("");
+			messageLabel.setText(" ");
+		}
+
+	
+
+	}
+
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
 			LoginSystem window = new LoginSystem();
