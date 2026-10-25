@@ -11,7 +11,7 @@ public class LoginSystem extends JFrame {
 	private JButton loginButton;
 	private JLabel messageLabel;
 	private LoginAuthenticator authenticator;
-	private LoginAttempts loginAttempts
+	private LoginAttempts loginAttempts;
 	
 	private final Color NAVY = new Color(18,32,58);
 	private final Color BLUE = new Color(45,105,230);
@@ -37,7 +37,7 @@ public class LoginSystem extends JFrame {
 		JPanel header = new JPanel();
 		header.setLayout(new BoxLayout(header, BoxLayout.Y_AXIS));
 		header.setBackground(NAVY);
-		header.setBorder(new EmptyBorder(25,20,25,20);
+		header.setBorder(new EmptyBorder(25,20,25,20));
 		
 		JLabel logo = new JLabel("EVENTPASS");
 		logo.setFont(new Font("SansSerif", Font.BOLD, 28));
@@ -53,6 +53,35 @@ public class LoginSystem extends JFrame {
 		header.add(Box.createVerticalStrut(8));
 		
 		//White Login Card
+		JPanel card = new JPanel();
+		card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
+		card.setBackground(Color.WHITE);
+		card.setBorder(new EmptyBorder(25,30,25,30));
+		
+		JLabel heading = new JLabel("Welcome Back");
+		heading.setFont(new Font("SansSerif", Font.BOLD, 24));
+		heading.setForeground(NAVY);
+		heading.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
+		JLabel description = new JLabel("Sign in to access your account.");
+		description .setFont(new Font("SansSerif", Font.PLAIN, 13));
+		description .setForeground(GREY);
+		description .setAlignmentX(Component.LEFT_ALIGNMENT);
+		
+		JLabel usernameLabel = new JLabel("Username");
+		styleLabel(usernameLabel);
+		
+		usernameField = new JTextField();
+		styleLabel(usernameField);
+		
+		JLabel passwordLabel = new JLabel("Password");
+		styleLabel(passwordLabel);
+		
+		passwordField = new JPasswordField();
+		styleLabel(passwordField);
+		
+		
+		
 	}
 
 		
