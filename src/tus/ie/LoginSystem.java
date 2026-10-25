@@ -28,6 +28,31 @@ public class LoginSystem extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		
+		// Main Background
+		JPanel mainPanel = new JPanel();
+		mainPanel.setBackground(NAVY);
+		
+		// Header 
+		JPanel header = new JPanel();
+		header.setLayout(new BoxLayout(header, BoxLayout.Y_AXIS));
+		header.setBackground(NAVY);
+		header.setBorder(new EmptyBorder(25,20,25,20);
+		
+		JLabel logo = new JLabel("EVENTPASS");
+		logo.setFont(new Font("SansSerif", Font.BOLD, 28));
+		logo.setForeground(Color.WHITE);
+		logo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		JLabel subtitle = new JLabel("Your Next Event Starts Here");
+		subtitle.setFont(new Font("SanSerif",Font.PLAIN,11));
+		subtitle.setForeground(new Color(195,207,225));
+		subtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		header.add(logo);
+		header.add(Box.createVerticalStrut(8));
+		
+		//White Login Card
 	}
 
 		
