@@ -32,7 +32,7 @@ public class LoginSystem extends JFrame {
 		setResizable(false);
 
 		// Main Background
-		JPanel mainPanel = new JPanel();
+		JPanel mainPanel = new JPanel(new BorderLayout());
 		mainPanel.setBackground(NAVY);
 
 		// Header
