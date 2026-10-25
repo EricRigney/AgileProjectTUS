@@ -125,12 +125,22 @@ public class LoginSystem extends JFrame {
 		card.add(Box.createHorizontalStrut(12));
 		card.add(footer);
 		
+		// Add padding around the card
+		JPanel cardContainer = new JPanel(new BorderLayout());
+		cardContainer.setBackground(LIGHT);
+		cardContainer.setBorder(new EmptyBorder(0,30,30,30));
 		
+		cardContainer.add(card, BorderLayout.CENTER);
+		
+		mainPanel.add(header, BorderLayout.NORTH);
+		mainPanel.add(cardContainer, BorderLayout.CENTER);
+		
+		add(mainPanel);
 	}
 
 		
 		
-	loginButton.addActionListener(e -> {
+		loginButton.addActionListener(e -> login());
 		String username = usernameField.getText();
 		String password = passwordField.getText();
 		
