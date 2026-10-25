@@ -28,7 +28,7 @@ public class LoginAuthenticator {
 	
 	public boolean resetPassword(String username, String newPassword) {
 		if(!accountExists(username) || newPassword == null || newPassword.isEmpty()) {
-			return true;
+			return false;
 		}
 		
 		accounts.put(username, newPassword);
