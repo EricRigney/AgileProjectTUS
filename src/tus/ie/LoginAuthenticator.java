@@ -26,7 +26,14 @@ public class LoginAuthenticator {
 	
 	// Change the password for an existing account
 	
-	
+	public boolean resetPassword(String username, String newPassword) {
+		if(!accountExists(username) || newPassword == null || newPassword.isEmpty()) {
+			return true;
+		}
+		
+		accounts.put(username, newPassword);
+		return true;
+	}
 	
 	
 	/*
