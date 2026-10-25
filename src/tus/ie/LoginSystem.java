@@ -131,6 +131,9 @@ public class LoginSystem extends JFrame {
 		card.add(Box.createHorizontalStrut(6));
 		card.add(passwordField);
 		card.add(Box.createHorizontalStrut(18));
+		
+		card.add(forgotButton);
+		card.add(Box.createHorizontalStrut(12));
 
 		card.add(loginButton);
 		card.add(Box.createHorizontalStrut(10));
