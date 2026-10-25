@@ -72,13 +72,13 @@ public class LoginSystem extends JFrame {
 		styleLabel(usernameLabel);
 
 		usernameField = new JTextField();
-		styleLabel(usernameField);
+		styleField(usernameField);
 
 		JLabel passwordLabel = new JLabel("Password");
 		styleLabel(passwordLabel);
 
 		passwordField = new JPasswordField();
-		styleLabel(passwordField);
+		styleField(passwordField);
 
 		loginButton = new JButton("Sign In");
 		loginButton.setFont(new Font("SanSerif", Font.BOLD, 15));
