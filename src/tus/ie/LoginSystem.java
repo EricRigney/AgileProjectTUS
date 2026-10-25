@@ -286,7 +286,7 @@ public class LoginSystem extends JFrame {
 
 		if (updated) {
 			JOptionPane.showMessageDialog(this,
-					"Your Password has been changed Successfully.|n" + "You can now sign in with your new password",
+					"Your Password has been changed Successfully.\n" + "You can now sign in with your new password",
 					"Password Updated", JOptionPane.INFORMATION_MESSAGE);
 
 			usernameField.setText(username);
