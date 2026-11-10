@@ -186,11 +186,36 @@ public class CreateAccountGUI extends JFrame {
 		}
 		
 		// Check if username already exists
-		if(authenticator.accountExists(username)) {
+		if (authenticator.accountExists(username)) {
 			
 			JOptionPane.showMessageDialog(this, "This username is already registered.", "Username Taken", JOptionPane.ERROR_MESSAGE);
 			
 			return;
+		}
+		
+		// Check password Length
+		if (password.length() < 6) {
+			
+			JOptionPane.showMessageDialog(this, "Password must contain at least 6 characters","Password Too Short ", JOptionPane.WARNING_MESSAGE);
+			
+			return;
+		}
+		
+		// Check passwords match
+		if (!password.equals(confirmPassword)) {
+			
+			JOptionPane.showMessageDialog(this, "Passwords do not match","Registration Failed ", JOptionPane.ERROR_MESSAGE);
+						
+			return;
+		}
+		
+		// Register Account
+		boolean registered = authenticator.registerAccount(username,password);
+		
+		if (registered) {
+			
+			JOptionPane.showMessageDialog(this, "Welcome" + name + "!\nYour account has been created successfully", "Account Created", JOptionPane.INFORMATION_MESSAGE );
+			dispose();
 		}
 	}
 	
