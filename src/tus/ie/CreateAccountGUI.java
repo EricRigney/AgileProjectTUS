@@ -122,6 +122,10 @@ public class CreateAccountGUI extends JFrame {
 		mainPanel.add(container, BorderLayout.CENTER);
 		
 		add(mainPanel);
+		
+		// Button Actions
+		createButton.addActionListener(e -> createAccount());
+		backButton.addActionListener(e -> dispose());
 
 	}
 
@@ -155,4 +159,17 @@ public class CreateAccountGUI extends JFrame {
 				new EmptyBorder(8, 10, 8, 10)));
 
 	}
+	
+	// Account Registration
+	private void createAccount() {
+		
+		String name = nameField.getText().trim();
+		String username = usernameField.getText().trim();
+		
+		String password = new String(passwordField.getPassword());
+		String confirmPassword = new String(confirmPasswordField.getPassword());
+		
+		
+	}
+	
 }
