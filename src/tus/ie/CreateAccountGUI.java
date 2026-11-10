@@ -91,7 +91,7 @@ public class CreateAccountGUI extends JFrame {
 		card.add(confirmPasswordField);
 		card.add(Box.createVerticalStrut(22));
 		
-		// Button
+		// Create Button
 		JButton createButton = new JButton("Create Button");
 		createButton.setFont(new Font("SansSerif", Font.BOLD, 15));
 		createButton.setForeground(Color.WHITE);
@@ -101,6 +101,27 @@ public class CreateAccountGUI extends JFrame {
 		createButton.setAlignmentX(Component.LEFT_ALIGNMENT);
 		createButton.setMaximumSize(new Dimension(Integer.MAX_VALUE,43));
 		createButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		// Back Button
+		JButton backButton = new JButton("Create Button");
+		backButton.setForeground(BLUE);
+		backButton.setBorderPainted(false);
+		backButton.setFocusPainted(false);
+		backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+		card.add(createButton);
+		card.add(Box.createVerticalStrut(10));
+		card.add(backButton);
+		
+		JPanel container = new JPanel(new BorderLayout());
+		container.setBackground(new Color(245,247,252));
+		container.setBorder(new EmptyBorder(0,30,30,30));
+		container.add(card, BorderLayout.CENTER);
+		
+		mainPanel.add(header, BorderLayout.NORTH);
+		mainPanel.add(container, BorderLayout.CENTER);
+		
+		add(mainPanel);
 
 	}
 
