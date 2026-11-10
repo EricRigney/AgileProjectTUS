@@ -169,7 +169,21 @@ public class CreateAccountGUI extends JFrame {
 		String password = new String(passwordField.getPassword());
 		String confirmPassword = new String(confirmPasswordField.getPassword());
 		
+		// Check empty fields
+		if(name.isEmpty() || username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+			
+			JOptionPane.showMessageDialog(this, "Please complete all fields.", "Missing Details", JOptionPane.WARNING_MESSAGE);
+			
+			return;
+		}
 		
+		// Check username length
+		if (username.length() < 3) {
+			
+			JOptionPane.showMessageDialog(this,"Username must contain at least 3 characters.", "Invalid Username",JOptionPane.WARNING_MESSAGE);
+			
+			return;
+		}
 	}
 	
 }
