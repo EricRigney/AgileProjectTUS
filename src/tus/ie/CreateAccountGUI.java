@@ -184,6 +184,14 @@ public class CreateAccountGUI extends JFrame {
 			
 			return;
 		}
+		
+		// Check if username already exists
+		if(authenticator.accountExists(username)) {
+			
+			JOptionPane.showMessageDialog(this, "This username is already registered.", "Username Taken", JOptionPane.ERROR_MESSAGE);
+			
+			return;
+		}
 	}
 	
 }
