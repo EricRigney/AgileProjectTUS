@@ -64,6 +64,23 @@ public class CreateAccountGUI extends JFrame {
 		
 		card.add(heading);
 		card.add(Box.createVerticalStrut(20));
-
+		
+		// Name
+		card.add(createLabel("Full Name"));
+		nameField = createTextField();
+		card.add(nameField);
+		card.add(Box.createVerticalStrut(12));
+		
+		
+	}
+	private JLabel createLabel(String text) {
+		
+		JLabel label = new JLabel(text);
+		label.setFont(new Font("SansSerif", Font.BOLD, 13));
+		label.setForeground(NAVY);
+		label.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
+		return label;
+		
 	}
 }
