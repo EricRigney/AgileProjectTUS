@@ -28,11 +28,11 @@ public class LoginAuthenticator {
 		if (username == null || username.trim().isEmpty() || password == null || password.isEmpty())
 			return false;
 	}
-	username=username.trim();
+	username = username.trim();
 
 	if(accountExists(username)) {
 		return false;
-		
+	}	
 		accounts.put(username, password);
 		
 		saveAccounts();
@@ -64,6 +64,17 @@ public class LoginAuthenticator {
 		return true;
 	}
 
-	
+	// Save Accounts to a text file
+	private void saveAccounts() {
+		
+		try(PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
+			
+			for (Map.Entry<String, String> entry : accounts.entrySet()) {
+				writer.println(entry.getKey() + "," + entry.getValue());
+			}
+		} catch (IOException e) {
+			System.out.println(" Error saving accounts: " + e.getMessage());
+		}
+	}
 
 }
