@@ -25,15 +25,20 @@ public class LoginAuthenticator {
 	// Register a new Account
 	public boolean registerAccount(String username, String password) {
 
-		if (username == null || username.trim().isEmpty() || password == null || password.isEmpty())
+		if (username == null || username.trim().isEmpty() || password == null || password.isEmpty()) {
 			return false;
-	}username=username.trim();
 
-	if(accountExists(username)) {
-		return false;
-	}	
-		accounts.put(username, password);
+		}
 		
+		username = username.trim();
+
+		// Check if account already exists
+		
+		if (accountExists(username)) { 
+			return false;
+		}
+		accounts.put(username, password);
+
 		saveAccounts();
 		return true;
 	}
