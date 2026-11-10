@@ -24,11 +24,20 @@ public class LoginAuthenticator {
 
 	// Register a new Account
 	public boolean registerAccount(String username, String password) {
-		
-		if(username == null || username.trim().isEmpty() || password == null || password.isEmpty())
+
+		if (username == null || username.trim().isEmpty() || password == null || password.isEmpty())
 			return false;
 	}
-	username = username.trim();
+	username=username.trim();
+
+	if(accountExists(username)) {
+		return false;
+		
+		accounts.put(username, password);
+		
+		saveAccounts();
+		return true;
+	}
 
 	// Checks for the right username and password
 	public boolean authenticate(String username, String password) {
@@ -50,19 +59,11 @@ public class LoginAuthenticator {
 		}
 
 		accounts.put(username, newPassword);
+		saveAccounts();
+		
 		return true;
 	}
 
-	/*
-	 * public boolean authenticate(String username, String password) {
-	 * 
-	 * if (username.equals("admin") && password.equals("password123")) { return
-	 * true; }
-	 * 
-	 * if (username.equals("student") && password.equals("java123")) { return true;
-	 * }
-	 * 
-	 * return false; }
-	 */
+	
 
 }
