@@ -83,6 +83,13 @@ public class CreateAccountGUI extends JFrame {
 		styleField(passwordField);
 		card.add(passwordField);
 		card.add(Box.createVerticalStrut(12));
+		
+		// Confrim Password
+		card.add(createLabel("Confirm Password"));
+		confirmPasswordField = new JPasswordField();
+		styleField(confirmPasswordField);
+		card.add(confirmPasswordField);
+		card.add(Box.createVerticalStrut(22));
 
 	}
 
