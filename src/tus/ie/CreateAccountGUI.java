@@ -50,8 +50,8 @@ public class CreateAccountGUI extends JFrame {
 		header.add(logo);
 		header.add(Box.createVerticalStrut(8));
 		header.add(subtitle);
-		
-		// Registration card 
+
+		// Registration card
 		JPanel card = new JPanel();
 		card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
 		card.setBackground(Color.WHITE);
@@ -61,26 +61,46 @@ public class CreateAccountGUI extends JFrame {
 		heading.setFont(new Font("SansSerif", Font.BOLD, 23));
 		heading.setForeground(NAVY);
 		heading.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
+
 		card.add(heading);
 		card.add(Box.createVerticalStrut(20));
-		
+
 		// Name
 		card.add(createLabel("Full Name"));
 		nameField = createTextField();
 		card.add(nameField);
 		card.add(Box.createVerticalStrut(12));
-		
-		
+
 	}
+
 	private JLabel createLabel(String text) {
-		
+
 		JLabel label = new JLabel(text);
 		label.setFont(new Font("SansSerif", Font.BOLD, 13));
 		label.setForeground(NAVY);
 		label.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
+
 		return label;
-		
+
+	}
+
+	private JTextField createTextField() {
+
+		JTextField field = new JTextField();
+		styleField(field);
+
+		return field;
+	}
+
+	private void styleField(JTextField field) {
+
+		field.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		field.setPreferredSize(new Dimension(300, 40));
+		field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+		field.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+		field.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(210, 218, 230)),
+				new EmptyBorder(8, 10, 8, 10)));
+
 	}
 }
