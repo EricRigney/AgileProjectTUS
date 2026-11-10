@@ -70,6 +70,12 @@ public class CreateAccountGUI extends JFrame {
 		nameField = createTextField();
 		card.add(nameField);
 		card.add(Box.createVerticalStrut(12));
+		
+		// Username
+		card.add(createLabel("Username"));
+		usernameField = createTextField();
+		card.add(usernameField);
+		card.add(Box.createVerticalStrut(12));
 
 	}
 
