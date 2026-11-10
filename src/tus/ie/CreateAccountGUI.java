@@ -9,7 +9,7 @@ public class CreateAccountGUI extends JFrame {
 	private JTextField nameField;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
-	private JPasswordField confrimPasswordField;
+	private JPasswordField confirmPasswordField;
 
 	private LoginAuthenticator authenticator;
 
@@ -84,12 +84,23 @@ public class CreateAccountGUI extends JFrame {
 		card.add(passwordField);
 		card.add(Box.createVerticalStrut(12));
 		
-		// Confrim Password
+		// Confirm Password
 		card.add(createLabel("Confirm Password"));
 		confirmPasswordField = new JPasswordField();
 		styleField(confirmPasswordField);
 		card.add(confirmPasswordField);
 		card.add(Box.createVerticalStrut(22));
+		
+		// Button
+		JButton createButton = new JButton("Create Button");
+		createButton.setFont(new Font("SansSerif", Font.BOLD, 15));
+		createButton.setForeground(Color.WHITE);
+		createButton.setBackground(BLUE);
+		createButton.setFocusPainted(false);
+		createButton.setBorderPainted(false);
+		createButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+		createButton.setMaximumSize(new Dimension(Integer.MAX_VALUE,43));
+		createButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
 	}
 
