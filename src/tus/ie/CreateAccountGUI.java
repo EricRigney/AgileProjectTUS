@@ -50,5 +50,20 @@ public class CreateAccountGUI extends JFrame {
 		header.add(logo);
 		header.add(Box.createVerticalStrut(8));
 		header.add(subtitle);
+		
+		// Registration card 
+		JPanel card = new JPanel();
+		card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
+		card.setBackground(Color.WHITE);
+		card.setBorder(new EmptyBorder(25, 30, 25, 30));
+
+		JLabel heading = new JLabel("Join EventPass");
+		heading.setFont(new Font("SansSerif", Font.BOLD, 23));
+		heading.setForeground(NAVY);
+		heading.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
+		card.add(heading);
+		card.add(Box.createVerticalStrut(20));
+
 	}
 }
