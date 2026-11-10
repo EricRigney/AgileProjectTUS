@@ -9,6 +9,7 @@ public class LoginSystem extends JFrame {
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 	private JButton loginButton;
+	private JButton createAccountButton;
 	private JLabel messageLabel;
 	private LoginAuthenticator authenticator;
 	private LoginAttempts loginAttempts;
@@ -95,6 +96,16 @@ public class LoginSystem extends JFrame {
 		loginButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 43));
 
 		loginButton.setPreferredSize(new Dimension(300, 43));
+		
+		// Create Account Button
+		JButton accountButton = new JButton("Create an Account");
+		createAccountButton.setFont(new Font("SansSerif", Font.BOLD, 13));
+		createAccountButton.setForeground(BLUE);
+		createAccountButton.setBorderPainted(false);
+		createAccountButton.setContentAreaFilled(false);
+		createAccountButton.setFocusPainted(false);
+		createAccountButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		createAccountButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		// Forgot Password Button
 		JButton forgotButton = new JButton("Forgot Password");
@@ -137,6 +148,8 @@ public class LoginSystem extends JFrame {
 
 		card.add(loginButton);
 		card.add(Box.createHorizontalStrut(10));
+		card.add(createAccountButton);
+		card.add(Box.createHorizontalStrut(10));
 		card.add(messageLabel);
 		card.add(Box.createHorizontalStrut(12));
 		card.add(footer);
@@ -157,7 +170,11 @@ public class LoginSystem extends JFrame {
 		loginButton.addActionListener(e -> login());
 		passwordField.addActionListener(e -> login());
 		forgotButton.addActionListener(e -> forgotpassword());
-
+		createAccountButton.addActionListener(e -> { CreateAccountGUI registerWindow = new CreateAccountGUI(authenticator);
+		
+		registerWindow.setVisible(true);
+		
+	});
 	}
 
 	private void styleLabel(JLabel label) {
