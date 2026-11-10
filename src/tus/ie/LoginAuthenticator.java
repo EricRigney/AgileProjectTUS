@@ -2,10 +2,13 @@ package tus.ie;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.io.*;
 
 public class LoginAuthenticator {
 
 	private Map<String, String> accounts = new HashMap<>();
+	
+	private final String FILE_NAME = "accounts.txt";
 
 	public LoginAuthenticator() {
 		accounts.put("admin", "admin123");
