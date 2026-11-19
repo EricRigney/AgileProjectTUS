@@ -29,12 +29,12 @@ public class LoginAuthenticator {
 			return false;
 
 		}
-		
+
 		username = username.trim();
 
 		// Check if account already exists
-		
-		if (accountExists(username)) { 
+
+		if (accountExists(username)) {
 			return false;
 		}
 		accounts.put(username, password);

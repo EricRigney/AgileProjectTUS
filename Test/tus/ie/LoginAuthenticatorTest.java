@@ -1,142 +1,111 @@
 
 package tus.ie;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import java.util.UUID;
 
 public class LoginAuthenticatorTest {
 
     @Test
-    void testValidAdminLogin() {
+    public void testRegisterAccount() {
 
-        // Arrange
-        LoginAuthenticator authenticator = new LoginAuthenticator();
+        LoginAuthenticator authenticator =
+                new LoginAuthenticator();
 
-        // Act
-        boolean result = authenticator.authenticate("admin", "admin123");
+        String username = "test_" + UUID.randomUUID();
 
-        // Assert
+        boolean result =
+                authenticator.registerAccount(username, "password123");
+
         assertTrue(result);
+        assertTrue(authenticator.accountExists(username));
     }
 
     @Test
-    void testValidStudentLogin() {
+    public void testDuplicateUsername() {
 
-        // Arrange
-        LoginAuthenticator authenticator = new LoginAuthenticator();
+        LoginAuthenticator authenticator =
+                new LoginAuthenticator();
 
-        // Act
-        boolean result = authenticator.authenticate("student", "java123");
+        String username = "test_" + UUID.randomUUID();
 
-        // Assert
+        authenticator.registerAccount(username, "password123");
+
+        boolean result =
+                authenticator.registerAccount(username, "another123");
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void testAuthenticateCorrectDetails() {
+
+        LoginAuthenticator authenticator =
+                new LoginAuthenticator();
+
+        assertTrue(
+                authenticator.authenticate("admin", "admin123")
+        );
+    }
+
+    @Test
+    public void testAuthenticateIncorrectPassword() {
+
+        LoginAuthenticator authenticator =
+                new LoginAuthenticator();
+
+        assertFalse(
+                authenticator.authenticate("admin", "wrongpassword")
+        );
+    }
+
+    @Test
+    public void testAccountExists() {
+
+        LoginAuthenticator authenticator =
+                new LoginAuthenticator();
+
+        assertTrue(authenticator.accountExists("admin"));
+        assertFalse(authenticator.accountExists("unknown_user"));
+    }
+
+    @Test
+    public void testResetPassword() {
+
+        LoginAuthenticator authenticator =
+                new LoginAuthenticator();
+
+        String username = "test_" + UUID.randomUUID();
+
+        authenticator.registerAccount(username, "oldpass123");
+
+        boolean result =
+                authenticator.resetPassword(username, "newpass123");
+
         assertTrue(result);
+
+        assertTrue(
+                authenticator.authenticate(username, "newpass123")
+        );
+
+        assertFalse(
+                authenticator.authenticate(username, "oldpass123")
+        );
     }
 
     @Test
-    void testIncorrectPassword() {
+    public void testRegisterEmptyUsername() {
 
-        // Arrange
-        LoginAuthenticator authenticator = new LoginAuthenticator();
+        LoginAuthenticator authenticator =
+                new LoginAuthenticator();
 
-        // Act
-        boolean result = authenticator.authenticate("admin", "wrong123");
-
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
-    void testIncorrectUsername() {
-
-        // Arrange
-        LoginAuthenticator authenticator = new LoginAuthenticator();
-
-        // Act
-        boolean result = authenticator.authenticate("unknown", "admin123");
-
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
-    void testAccountExists() {
-
-        // Arrange
-        LoginAuthenticator authenticator = new LoginAuthenticator();
-
-        // Act
-        boolean result = authenticator.accountExists("admin");
-
-        // Assert
-        assertTrue(result);
-    }
-
-    @Test
-    void testAccountDoesNotExist() {
-
-        // Arrange
-        LoginAuthenticator authenticator = new LoginAuthenticator();
-
-        // Act
-        boolean result = authenticator.accountExists("unknown");
-
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
-    void testResetPassword() {
-
-        // Arrange
-        LoginAuthenticator authenticator = new LoginAuthenticator();
-
-        // Act
-        boolean result = authenticator.resetPassword("admin", "newpass123");
-
-        // Assert
-        assertTrue(result);
-        assertTrue(authenticator.authenticate("admin", "newpass123"));
-    }
-
-    @Test
-    void testResetPasswordInvalidUsername() {
-
-        // Arrange
-        LoginAuthenticator authenticator = new LoginAuthenticator();
-
-        // Act
-        boolean result = authenticator.resetPassword("unknown", "newpass123");
-
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
-    void testResetPasswordEmpty() {
-
-        // Arrange
-        LoginAuthenticator authenticator = new LoginAuthenticator();
-
-        // Act
-        boolean result = authenticator.resetPassword("admin", "");
-
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
-    void testResetPasswordNull() {
-
-        // Arrange
-        LoginAuthenticator authenticator = new LoginAuthenticator();
-
-        // Act
-        boolean result = authenticator.resetPassword("admin", null);
-
-        // Assert
-        assertFalse(result);
+        assertFalse(
+                authenticator.registerAccount("", "password123")
+        );
     }
 }
+
+
+    

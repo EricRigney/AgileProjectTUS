@@ -98,7 +98,7 @@ public class LoginSystem extends JFrame {
 		loginButton.setPreferredSize(new Dimension(300, 43));
 		
 		// Create Account Button
-		JButton accountButton = new JButton("Create an Account");
+		createAccountButton = new JButton("Create an Account");
 		createAccountButton.setFont(new Font("SansSerif", Font.BOLD, 13));
 		createAccountButton.setForeground(BLUE);
 		createAccountButton.setBorderPainted(false);

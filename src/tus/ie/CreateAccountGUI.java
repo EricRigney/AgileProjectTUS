@@ -92,7 +92,7 @@ public class CreateAccountGUI extends JFrame {
 		card.add(Box.createVerticalStrut(22));
 		
 		// Create Button
-		JButton createButton = new JButton("Create Button");
+		JButton createButton = new JButton("Create Account");
 		createButton.setFont(new Font("SansSerif", Font.BOLD, 15));
 		createButton.setForeground(Color.WHITE);
 		createButton.setBackground(BLUE);
@@ -103,7 +103,7 @@ public class CreateAccountGUI extends JFrame {
 		createButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		// Back Button
-		JButton backButton = new JButton("Create Button");
+		JButton backButton = new JButton("Back to Login");
 		backButton.setForeground(BLUE);
 		backButton.setBorderPainted(false);
 		backButton.setFocusPainted(false);
