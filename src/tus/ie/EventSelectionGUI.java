@@ -91,6 +91,17 @@ public class EventSelectionGUI extends JFrame {
 		dateSpinner.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
 		dateSpinner.setAlignmentX(Component.LEFT_ALIGNMENT);
 		
+		// Search Button
+		searchButton = new JButton("Search Available Seats");
+		searchButton.setFont(new Font("SanSerif", Font.BOLD,15));
+		searchButton.setBackground(Color.WHITE);
+		searchButton.setForeground(BLUE);
+		searchButton.setFocusPainted(false);
+		searchButton.setBorderPainted(false);
+		searchButton.setCursor( new Cursor(Cursor.HAND_CURSOR));
+		searchButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+		searchButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
+		
 	}
 
 	// Style Label
