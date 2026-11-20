@@ -8,5 +8,14 @@ import java.util.Date;
 
 public class EventSelectionGUI extends JFrame {
 	
+	private JComboBox<String> eventComboBox;
+	private JSpinner dateSpinner;
+	private JButton searchButton;
+	
+	private final Color NAVY = new Color(18,32,58);
+	private final Color BLUE = new Color(45,105,230);
+	private final Color LIGHT = new Color(245,247,252);
+	private final Color GREY = new Color(105,116,135);
+	
 	
 }
