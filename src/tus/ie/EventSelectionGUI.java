@@ -69,6 +69,14 @@ public class EventSelectionGUI extends JFrame {
 		JLabel eventLabel = new JLabel("Select Event");
 		styleLabel(eventLabel);
 
+		// Event Dropdown Option
+		String[] events = { " Barcelona vs Real Madrid - La Liga", "Ireland vs England - Six Nations",
+				"All Ireland Hurling Final", " Coldplay - Concert", "Taylor Swift - Concert" };
+		
+		eventComboBox = new JComboBox<>(events);
+		eventComboBox.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		eventComboBox.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+		eventComboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
 	}
 
 	// Style Label
