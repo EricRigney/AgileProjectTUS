@@ -18,4 +18,18 @@ public class EventSelectionGUI extends JFrame {
 	private final Color GREY = new Color(105,116,135);
 	
 	
+	public EventSelectionGUI() {
+		
+		setTitle("EventPass -Find Tickets");
+		setSize(600,450);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		
+		// Event Panel
+		JPanel eventPanel = new JPanel(new BorderLayout());
+		eventPanel.setBackground(LIGHT);
+		
+		
+	}
 }
