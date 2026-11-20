@@ -77,6 +77,20 @@ public class EventSelectionGUI extends JFrame {
 		eventComboBox.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		eventComboBox.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
 		eventComboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
+		// Date Label 
+		JLabel dateLabel = new JLabel("Select Date");
+		styleLabel(dateLabel);
+		
+		// Date spinner
+		SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null, java.util.Calender.DAY_OF_MONTH);
+		
+		dateSpinner = new JSpinner(dateModel);
+		dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "dd/MM/yyyy"));
+		dateSpinner.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		dateSpinner.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+		dateSpinner.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
 	}
 
 	// Style Label
