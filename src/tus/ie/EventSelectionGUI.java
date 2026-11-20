@@ -49,6 +49,22 @@ public class EventSelectionGUI extends JFrame {
 		event.add(logo);
 		event.add(Box.createVerticalStrut(10));
 		event.add(subtitle);
+		
+		// Selection Card
+		JPanel selectionCard = new JPanel();
+		selectionCard.setLayout(new BoxLayout(event, BoxLayout.Y_AXIS));
+		selectionCard.setBackground(Color.WHITE);
+		selectionCard.setBorder(new EmptyBorder(30,40,30,40));
 
+		JLabel selection = new JLabel("Search for Tickets");
+		selection.setFont(new Font("SanSerif", Font.BOLD, 24));
+		selection.setForeground(NAVY);
+		selection.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
+		JLabel description = new JLabel(" Select an event and date to get started.");
+		description.setFont(new Font("SanSerif", Font.PLAIN, 13));
+		description.setForeground(GREY);
+		description.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
 	}
 }
