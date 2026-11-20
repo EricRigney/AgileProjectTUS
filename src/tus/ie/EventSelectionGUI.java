@@ -30,6 +30,25 @@ public class EventSelectionGUI extends JFrame {
 		JPanel eventPanel = new JPanel(new BorderLayout());
 		eventPanel.setBackground(LIGHT);
 		
+		// Event Header
+		JPanel event = new JPanel();
+		event.setLayout(new BoxLayout(event, BoxLayout.Y_AXIS));
+		event.setBackground(NAVY);
+		event.setBorder(new EmptyBorder(30,20,30,20));
 		
+		JLabel logo = new JLabel("EVENT PASS");
+		logo.setFont(new Font("SansSerif", Font.BOLD, 30));
+		logo.setForeground(Color.WHITE);
+		logo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		JLabel subtitle = new JLabel("Find Your Next Event");
+		subtitle.setFont(new Font("SanSerif", Font.PLAIN, 14));
+		subtitle.setForeground(new Color(195,207,225));
+		subtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		event.add(logo);
+		event.add(Box.createVerticalStrut(10));
+		event.add(subtitle);
+
 	}
 }
