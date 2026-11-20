@@ -102,6 +102,22 @@ public class EventSelectionGUI extends JFrame {
 		searchButton.setAlignmentX(Component.LEFT_ALIGNMENT);
 		searchButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
 		
+		// Add Components
+		selectionCard.add(selection);
+		selectionCard.add(Box.createVerticalStrut(8));
+		selectionCard.add(description);
+		selectionCard.add(Box.createVerticalStrut(10));
+		
+		selectionCard.add(eventLabel);
+		selectionCard.add(Box.createVerticalStrut(8));
+		selectionCard.add(eventComboBox);
+		selectionCard.add(Box.createVerticalStrut(20));
+		
+		selectionCard.add(dateLabel);
+		selectionCard.add(Box.createVerticalStrut(8));
+		selectionCard.add(dateSpinner);
+		selectionCard.add(Box.createVerticalStrut(30));
+		
 	}
 
 	// Style Label
