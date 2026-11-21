@@ -15,20 +15,18 @@ public class EventSelectionGUI extends JFrame {
 	private JSpinner dateSpinner;
 	private JButton calendarButton;
 	private JButton searchButton;
-	
+
 	private Calendar displayedDate;
 	private Calendar displayedMonth;
-	
+
 	private JPopupMenu calendarPopup;
 	private JPanel calendarPanel;
-
 
 	private final Color NAVY = new Color(18, 32, 58);
 	private final Color BLUE = new Color(45, 105, 230);
 	private final Color LIGHT = new Color(245, 247, 252);
 	private final Color GREY = new Color(105, 116, 135);
 	private final Color HOVER_BLUE = new Color(220, 235, 255);
-
 
 	public EventSelectionGUI() {
 
@@ -37,16 +35,16 @@ public class EventSelectionGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		
+
 		// Default Date
 		selectedDate = Calendar.getInstance();
-		
+
 		while (!isWeekend(selectedDate)) {
 			selectedDate.add(Calendar.DAY_OF_MONTH, 1);
 		}
-		
+
 		displayedMonth = (Calendar) selectedDate.clone();
-		
+
 		// Event Panel
 		JPanel eventPanel = new JPanel(new BorderLayout());
 		eventPanel.setBackground(LIGHT);
@@ -103,21 +101,30 @@ public class EventSelectionGUI extends JFrame {
 		// Date Label
 		JLabel dateLabel = new JLabel("Select Date");
 		styleLabel(dateLabel);
-		
+
 		// Date Selection Panel
-		JPanel dateSeletcionPanel = new JPanel(new BorderLayout(8,0));
+		JPanel dateSeletcionPanel = new JPanel(new BorderLayout(8, 0));
 		dateSeletcionPanel.setBackground(Color.WHITE);
 		dateSeletcionPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 42));
 		dateSeletcionPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
-		// Date spinner
-		//SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.DAY_OF_MONTH);
 
-		//dateSpinner = new JSpinner(dateModel);
-		//dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "dd/MM/yyyy"));
-		//dateSpinner.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		//dateSpinner.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-		//dateSpinner.setAlignmentX(Component.LEFT_ALIGNMENT);
+		// Date Field
+		dateField = new JTextField();
+		dateField.setEditable(false);
+		dateField.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		dateField.setBorder(BorderFactory.createCompundBorder(BorderFactory.createLineBorder(new Color(210, 218, 230)),
+				new EmptyBorder(8, 10, 8, 10)));
+		updateDateField();
+
+		// Date spinner
+		// SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null,
+		// java.util.Calendar.DAY_OF_MONTH);
+
+		// dateSpinner = new JSpinner(dateModel);
+		// dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "dd/MM/yyyy"));
+		// dateSpinner.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		// dateSpinner.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+		// dateSpinner.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		// Search Button
 		searchButton = new JButton("Search Available Seats");
@@ -145,7 +152,7 @@ public class EventSelectionGUI extends JFrame {
 		selectionCard.add(Box.createVerticalStrut(8));
 		selectionCard.add(dateSpinner);
 		selectionCard.add(Box.createVerticalStrut(30));
-		
+
 		selectionCard.add(searchButton);
 
 		// Card Container
@@ -171,6 +178,23 @@ public class EventSelectionGUI extends JFrame {
 		style.setAlignmentX(Component.LEFT_ALIGNMENT);
 	}
 
+	// Update Date Field
+	private void updateDateField() {
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		dateField.setText(dateFormat.format(selectedDate.getTime()));
+	}
+
+	// Date Validation
+	private boolean isWeekend(Date date) {
+		java.util.Calendar calendar = java.util.Calendar.getInstance();
+		calendar.setTime(date);
+
+		int day = calendar.get(java.util.Calendar.DAY_OF_WEEK);
+
+		return day == java.util.Calendar.SATURDAY || day == java.util.Calendar.SUNDAY;
+	}
+
 	// Search Label
 	private void searchEvent() {
 
@@ -190,15 +214,5 @@ public class EventSelectionGUI extends JFrame {
 				"Event: " + selectedEvent + "\nDate: " + formattedDate + "\n\nSearching for available seats...",
 				"Evebt Selected", JOptionPane.INFORMATION_MESSAGE);
 
-	}
-
-	// Date Validation
-	private boolean isWeekend(Date date) {
-		java.util.Calendar calendar = java.util.Calendar.getInstance();
-		calendar.setTime(date);
-
-		int day = calendar.get(java.util.Calendar.DAY_OF_WEEK);
-
-		return day == java.util.Calendar.SATURDAY || day == java.util.Calendar.SUNDAY;
 	}
 }
