@@ -116,16 +116,16 @@ public class EventSelectionGUI extends JFrame {
 				new EmptyBorder(8, 10, 8, 10)));
 		updateDateField();
 
-		// Calendar Button 
+		// Calendar Button
 		calendarButton = new JButton("📅"); // Inserted Symbol of Calendar from Windows
 		calendarButton.setFont(new Font("SanSerif", Font.PLAIN, 18));
-		calendarButton.setPreferredSize(new Dimension(48,40));
+		calendarButton.setPreferredSize(new Dimension(48, 40));
 		calendarButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		calendarButton.setToolTipText("Open Calendar");
-		
+
 		dateSelectionPanel.add(dateField, BorderLayout.CENTER);
 		dateSelectionPanel.add(calendarButton, BorderLayout.EAST);
-		
+
 		// Date spinner
 		// SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null,
 		// java.util.Calendar.DAY_OF_MONTH);
@@ -175,7 +175,7 @@ public class EventSelectionGUI extends JFrame {
 		eventPanel.add(cardContainer, BorderLayout.CENTER);
 
 		add(eventPanel);
-		
+
 		// Create Calendar
 		createCalendarPopup();
 
@@ -184,28 +184,53 @@ public class EventSelectionGUI extends JFrame {
 		searchButton.addActionListener(e -> searchEvent());
 
 	}
-	
+
 	// Create Calendar Popup
 	private void createCalendarPopup() {
-		
+
 		calendarPopup = newJPopupMenu();
-		calendarPopup.setBorder(BorderFactory.createLineBorder(new Color(210,218,230)));
-		
-		calendarPanel = new JPanel(new BorderLayout(5,5));
+		calendarPopup.setBorder(BorderFactory.createLineBorder(new Color(210, 218, 230)));
+
+		calendarPanel = new JPanel(new BorderLayout(5, 5));
 		calendarPanel.setBackground(Color.WHITE);
-		calendarPanel.setBorder(new EmptyBorder(10,10,10,10));
-		calendarPanel.setPreferredSize(new Dimension(300,280));
-		
+		calendarPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		calendarPanel.setPreferredSize(new Dimension(300, 280));
+
 		calendarPopup.add(calendarPanel);
-		
+
 		updateCalendar();
-		
+
 	}
-	
+
 	// Update Calendar Display
 	private void updateCalendar() {
-		
+
 		calendarPanel.removeALL();
+
+		// Calendar Header
+		JPanel monthHeader = new JPanel(new BorderLayout());
+		monthHeader.setBackground(Color.WHITE);
+
+		JButton previousButton = new JButton("<");
+		JButton nextButton = new JButton(">");
+
+		JLabel monthLabel = new JLabel(new SimpleDateFormat("MMMM yyyy").format(displayedMonth.getTime()),
+				SwingConstants.CENTER);
+		
+		monthLabel.setFont(new Font("SanSerif", Font.BOLD, 16));
+		monthLabel.setForeground(NAVY);
+		
+		previousButton.setFocusPainted(false);
+		nextButton.setFocusPainted(false);
+		
+		monthHeader.add(previousButton, BorderLayout.WEST);
+		monthHeader.add(monthLabel, BorderLayout.CENTER);
+		monthHeader.add(nextButton, BorderLayout.EAST);
+		
+		previousButton.addActionListener(e -> {
+			displayedMonth.add(Calendar.MONTH, -1);
+			updateCalendar();
+		});
 	}
 
 	// Style Label
