@@ -153,4 +153,14 @@ public class EventSelectionGUI extends JFrame {
 		JOptionPane.showMessageDialog(this, "Event: " + selectedEvent + "\nDate: " + formattedDate + "\n\nSearching for available seats...", "Ecebt Selected", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
+	
+	// Date Validation
+	private boolean isWeekend(Date date) {
+		java.util.Calendar calendar = java.util.Calendar.getInstance();
+		calendar.setTime(date);
+		
+		int day = calendar.get(java.util.Calendar.DAY_OF_WEEK);
+		
+		return day == java.util.Calendar.SATURDAY || day == java.util.Calendar.SUNDAY;
+	}
 }
