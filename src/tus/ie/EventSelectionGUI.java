@@ -201,6 +201,12 @@ public class EventSelectionGUI extends JFrame {
 		updateCalendar();
 		
 	}
+	
+	// Update Calendar Display
+	private void updateCalendar() {
+		
+		calendarPanel.removeALL();
+	}
 
 	// Style Label
 	private void styleLabel(JLabel style) {
