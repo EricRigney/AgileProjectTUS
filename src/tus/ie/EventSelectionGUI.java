@@ -231,6 +231,13 @@ public class EventSelectionGUI extends JFrame {
 			displayedMonth.add(Calendar.MONTH, -1);
 			updateCalendar();
 		});
+		
+		nextButton.addActionListener(e -> {
+			displayedMonth.add(Calendar.MONTH, -1);
+			updateCalendar();
+		});
+		
+		calendarPanel.add(monthHeader, BorderLayout.NORTH);
 	}
 
 	// Style Label
