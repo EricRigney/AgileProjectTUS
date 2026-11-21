@@ -160,7 +160,7 @@ public class EventSelectionGUI extends JFrame {
 
 		selectionCard.add(dateLabel);
 		selectionCard.add(Box.createVerticalStrut(8));
-		selectionCard.add(dateSpinner);
+		selectionCard.add(dateSelectionPanel);
 		selectionCard.add(Box.createVerticalStrut(30));
 
 		selectionCard.add(searchButton);
@@ -175,10 +175,31 @@ public class EventSelectionGUI extends JFrame {
 		eventPanel.add(cardContainer, BorderLayout.CENTER);
 
 		add(eventPanel);
+		
+		// Create Calendar
+		createCalendarPopup();
 
 		// Button Action
+		calendarButton.addActionListener(e -> calendarPopup.show(calendarButton, 0, calendarButton.getHeight()));
 		searchButton.addActionListener(e -> searchEvent());
 
+	}
+	
+	// Create Calendar Popup
+	private void createCalendarPopup() {
+		
+		calendarPopup = newJPopupMenu();
+		calendarPopup.setBorder(BorderFactory.createLineBorder(new Color(210,218,230)));
+		
+		calendarPanel = new JPanel(new BorderLayout(5,5));
+		calendarPanel.setBackground(Color.WHITE);
+		calendarPanel.setBorder(new EmptyBorder(10,10,10,10));
+		calendarPanel.setPreferredSize(new Dimension(300,280));
+		
+		calendarPopup.add(calendarPanel);
+		
+		updateCalendar();
+		
 	}
 
 	// Style Label
