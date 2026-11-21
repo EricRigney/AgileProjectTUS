@@ -103,10 +103,10 @@ public class EventSelectionGUI extends JFrame {
 		styleLabel(dateLabel);
 
 		// Date Selection Panel
-		JPanel dateSeletcionPanel = new JPanel(new BorderLayout(8, 0));
-		dateSeletcionPanel.setBackground(Color.WHITE);
-		dateSeletcionPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 42));
-		dateSeletcionPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		JPanel dateSelectionPanel = new JPanel(new BorderLayout(8, 0));
+		dateSelectionPanel.setBackground(Color.WHITE);
+		dateSelectionPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 42));
+		dateSelectionPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		// Date Field
 		dateField = new JTextField();
@@ -116,6 +116,16 @@ public class EventSelectionGUI extends JFrame {
 				new EmptyBorder(8, 10, 8, 10)));
 		updateDateField();
 
+		// Calendar Button 
+		calendarButton = new JButton("📅"); // Inserted Symbol of Calendar from Windows
+		calendarButton.setFont(new Font("SanSerif", Font.PLAIN, 18));
+		calendarButton.setPreferredSize(new Dimension(48,40));
+		calendarButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		calendarButton.setToolTipText("Open Calendar");
+		
+		dateSelectionPanel.add(dateField, BorderLayout.CENTER);
+		dateSelectionPanel.add(calendarButton, BorderLayout.EAST);
+		
 		// Date spinner
 		// SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null,
 		// java.util.Calendar.DAY_OF_MONTH);
