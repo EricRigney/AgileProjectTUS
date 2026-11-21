@@ -83,7 +83,7 @@ public class EventSelectionGUI extends JFrame {
 		styleLabel(dateLabel);
 		
 		// Date spinner
-		SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null, java.util.Calender.DAY_OF_MONTH);
+		SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.DAY_OF_MONTH);
 		
 		dateSpinner = new JSpinner(dateModel);
 		dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "dd/MM/yyyy"));
@@ -141,6 +141,7 @@ public class EventSelectionGUI extends JFrame {
 		style.setAlignmentX(Component.LEFT_ALIGNMENT);
 	}
 	
+	// Search Label
 	private void searchEvent() {
 		
 		String selectedEvent = (String) eventComboBox.getSelectedItem();
