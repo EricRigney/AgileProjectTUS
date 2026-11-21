@@ -3,19 +3,32 @@ package tus.ie;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class EventSelectionGUI extends JFrame {
 
 	private JComboBox<String> eventComboBox;
 	private JSpinner dateSpinner;
+	private JButton calendarButton;
 	private JButton searchButton;
+	
+	private Calendar displayedDate;
+	private Calendar displayedMonth;
+	
+	private JPopupMenu calendarPopup;
+	private JPanel calendarPanel;
+
 
 	private final Color NAVY = new Color(18, 32, 58);
 	private final Color BLUE = new Color(45, 105, 230);
 	private final Color LIGHT = new Color(245, 247, 252);
 	private final Color GREY = new Color(105, 116, 135);
+	private final Color HOVER_BLUE = new Color(220, 235, 255);
+
 
 	public EventSelectionGUI() {
 
@@ -24,7 +37,16 @@ public class EventSelectionGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-
+		
+		// Default Date
+		selectedDate = Calendar.getInstance();
+		
+		while (!isWeekend(selectedDate)) {
+			selectedDate.add(Calendar.DAY_OF_MONTH, 1);
+		}
+		
+		displayedMonth = (Calendar) selectedDate.clone();
+		
 		// Event Panel
 		JPanel eventPanel = new JPanel(new BorderLayout());
 		eventPanel.setBackground(LIGHT);
@@ -72,67 +94,68 @@ public class EventSelectionGUI extends JFrame {
 		// Event Dropdown Option
 		String[] events = { " Barcelona vs Real Madrid - La Liga", "Ireland vs England - Six Nations",
 				"All Ireland Hurling Final", " Coldplay - Concert", "Taylor Swift - Concert" };
-		
+
 		eventComboBox = new JComboBox<>(events);
 		eventComboBox.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		eventComboBox.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
 		eventComboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
-		// Date Label 
+
+		// Date Label
 		JLabel dateLabel = new JLabel("Select Date");
 		styleLabel(dateLabel);
-		
+
 		// Date spinner
 		SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.DAY_OF_MONTH);
-		
+
 		dateSpinner = new JSpinner(dateModel);
 		dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "dd/MM/yyyy"));
 		dateSpinner.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		dateSpinner.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
 		dateSpinner.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
+
 		// Search Button
 		searchButton = new JButton("Search Available Seats");
-		searchButton.setFont(new Font("SanSerif", Font.BOLD,15));
+		searchButton.setFont(new Font("SanSerif", Font.BOLD, 15));
 		searchButton.setBackground(Color.WHITE);
 		searchButton.setForeground(BLUE);
 		searchButton.setFocusPainted(false);
 		searchButton.setBorderPainted(false);
-		searchButton.setCursor( new Cursor(Cursor.HAND_CURSOR));
+		searchButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		searchButton.setAlignmentX(Component.LEFT_ALIGNMENT);
 		searchButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
-		
+
 		// Add Components
 		selectionCard.add(selection);
 		selectionCard.add(Box.createVerticalStrut(8));
 		selectionCard.add(description);
 		selectionCard.add(Box.createVerticalStrut(10));
-		
+
 		selectionCard.add(eventLabel);
 		selectionCard.add(Box.createVerticalStrut(8));
 		selectionCard.add(eventComboBox);
 		selectionCard.add(Box.createVerticalStrut(20));
-		
+
 		selectionCard.add(dateLabel);
 		selectionCard.add(Box.createVerticalStrut(8));
 		selectionCard.add(dateSpinner);
 		selectionCard.add(Box.createVerticalStrut(30));
-		selectionCard.add(searchButton);
 		
+		selectionCard.add(searchButton);
+
 		// Card Container
 		JPanel cardContainer = new JPanel(new BorderLayout());
 		cardContainer.setBackground(LIGHT);
-		cardContainer.setBorder(new EmptyBorder(20,40,40,40));
+		cardContainer.setBorder(new EmptyBorder(20, 40, 40, 40));
 		cardContainer.add(selectionCard, BorderLayout.CENTER);
-		
+
 		eventPanel.add(event, BorderLayout.NORTH);
 		eventPanel.add(cardContainer, BorderLayout.CENTER);
-		
+
 		add(eventPanel);
-		
+
 		// Button Action
 		searchButton.addActionListener(e -> searchEvent());
-		
+
 	}
 
 	// Style Label
@@ -141,26 +164,35 @@ public class EventSelectionGUI extends JFrame {
 		style.setForeground(NAVY);
 		style.setAlignmentX(Component.LEFT_ALIGNMENT);
 	}
-	
+
 	// Search Label
 	private void searchEvent() {
-		
-		String selectedEvent = (String) eventComboBox.getSelectedItem();
+
 		Date selectedDate = (Date) dateSpinner.getValue();
+		if (!isWeekend(selectedDate)) {
+			JOptionPane.showMessageDialog(this, "Please select an Available date", "Invalid Date",
+					JOptionPane.WARNING_MESSAGE);
+
+			return;
+		}
+
+		String selectedEvent = (String) eventComboBox.getSelectedItem();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String formattedDate = dateFormat.format(selectedDate);
-		
-		JOptionPane.showMessageDialog(this, "Event: " + selectedEvent + "\nDate: " + formattedDate + "\n\nSearching for available seats...", "Ecebt Selected", JOptionPane.INFORMATION_MESSAGE);
-		
+
+		JOptionPane.showMessageDialog(this,
+				"Event: " + selectedEvent + "\nDate: " + formattedDate + "\n\nSearching for available seats...",
+				"Evebt Selected", JOptionPane.INFORMATION_MESSAGE);
+
 	}
-	
+
 	// Date Validation
 	private boolean isWeekend(Date date) {
 		java.util.Calendar calendar = java.util.Calendar.getInstance();
 		calendar.setTime(date);
-		
+
 		int day = calendar.get(java.util.Calendar.DAY_OF_WEEK);
-		
+
 		return day == java.util.Calendar.SATURDAY || day == java.util.Calendar.SUNDAY;
 	}
 }
