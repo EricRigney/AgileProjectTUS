@@ -51,7 +51,7 @@ public class EventSelectionGUI extends JFrame {
 
 		// Selection Card
 		JPanel selectionCard = new JPanel();
-		selectionCard.setLayout(new BoxLayout(event, BoxLayout.Y_AXIS));
+		selectionCard.setLayout(new BoxLayout(selectionCard, BoxLayout.Y_AXIS));
 		selectionCard.setBackground(Color.WHITE);
 		selectionCard.setBorder(new EmptyBorder(30, 40, 30, 40));
 
@@ -117,6 +117,7 @@ public class EventSelectionGUI extends JFrame {
 		selectionCard.add(Box.createVerticalStrut(8));
 		selectionCard.add(dateSpinner);
 		selectionCard.add(Box.createVerticalStrut(30));
+		selectionCard.add(searchButton);
 		
 		// Card Container
 		JPanel cardContainer = new JPanel(new BorderLayout());

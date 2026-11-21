@@ -211,8 +211,8 @@ public class LoginSystem extends JFrame {
 
 		// Validate Login details
 		if (authenticator.authenticate(username, password)) {
-			messageLabel.setForeground(GREEN);
-			messageLabel.setText("Login Successful!");
+			//messageLabel.setForeground(GREEN);
+			//messageLabel.setText("Login Successful!");
 
 			JOptionPane.showMessageDialog(this, "Welcome " + username + "!\nYour login was successful.",
 					"Login Successful", JOptionPane.INFORMATION_MESSAGE);
