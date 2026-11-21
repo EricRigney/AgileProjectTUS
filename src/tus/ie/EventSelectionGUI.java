@@ -118,6 +118,20 @@ public class EventSelectionGUI extends JFrame {
 		selectionCard.add(dateSpinner);
 		selectionCard.add(Box.createVerticalStrut(30));
 		
+		// Card Container
+		JPanel cardContainer = new JPanel(new BorderLayout());
+		cardContainer.setBackground(LIGHT);
+		cardContainer.setBorder(new EmptyBorder(20,40,40,40));
+		cardContainer.add(selectionCard, BorderLayout.CENTER);
+		
+		eventPanel.add(event, BorderLayout.NORTH);
+		eventPanel.add(cardContainer, BorderLayout.CENTER);
+		
+		add(eventPanel);
+		
+		// Button Action
+		searchButton.addActionListener(e -> searchEvent());
+		
 	}
 
 	// Style Label
@@ -125,5 +139,10 @@ public class EventSelectionGUI extends JFrame {
 		style.setFont(new Font("SansSerif", Font.BOLD, 13));
 		style.setForeground(NAVY);
 		style.setAlignmentX(Component.LEFT_ALIGNMENT);
+	}
+	
+	private void searchEvent() {
+		
+		String selectedEvent = (String) eventComboBox.getSelectedItem();
 	}
 }
