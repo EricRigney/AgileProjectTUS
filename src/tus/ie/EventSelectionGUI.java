@@ -144,5 +144,11 @@ public class EventSelectionGUI extends JFrame {
 	private void searchEvent() {
 		
 		String selectedEvent = (String) eventComboBox.getSelectedItem();
+		Date selectedDate = (Date) dateSpinner.getValue();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String formattedDate = dateFormat.format(selectedDate);
+		
+		JOptionPane.showMessageDialog(this, "Event: " + selectedEvent + "\nDate: " + formattedDate + "\n\nSearching for available seats...", "Ecebt Selected", JOptionPane.INFORMATION_MESSAGE);
+		
 	}
 }
