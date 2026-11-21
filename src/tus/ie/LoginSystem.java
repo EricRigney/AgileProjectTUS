@@ -217,8 +217,10 @@ public class LoginSystem extends JFrame {
 			JOptionPane.showMessageDialog(this, "Welcome " + username + "!\nYour login was successful.",
 					"Login Successful", JOptionPane.INFORMATION_MESSAGE);
 
-			// This are will be for the booking screen which will be added later in the
-			// project
+			EventSelectionGUI eventWindow = new EventSelectionGUI();
+			eventWindow.setVisible(true);
+			
+			dispose(); // Close the Login Window
 
 		} else {
 			loginAttempts.recordFailedAttempt();
