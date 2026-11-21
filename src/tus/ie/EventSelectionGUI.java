@@ -103,15 +103,21 @@ public class EventSelectionGUI extends JFrame {
 		// Date Label
 		JLabel dateLabel = new JLabel("Select Date");
 		styleLabel(dateLabel);
-
+		
+		// Date Selection Panel
+		JPanel dateSeletcionPanel = new JPanel(new BorderLayout(8,0));
+		dateSeletcionPanel.setBackground(Color.WHITE);
+		dateSeletcionPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 42));
+		dateSeletcionPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
 		// Date spinner
-		SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.DAY_OF_MONTH);
+		//SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.DAY_OF_MONTH);
 
-		dateSpinner = new JSpinner(dateModel);
-		dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "dd/MM/yyyy"));
-		dateSpinner.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		dateSpinner.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-		dateSpinner.setAlignmentX(Component.LEFT_ALIGNMENT);
+		//dateSpinner = new JSpinner(dateModel);
+		//dateSpinner.setEditor(new JSpinner.DateEditor(dateSpinner, "dd/MM/yyyy"));
+		//dateSpinner.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		//dateSpinner.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+		//dateSpinner.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		// Search Button
 		searchButton = new JButton("Search Available Seats");
