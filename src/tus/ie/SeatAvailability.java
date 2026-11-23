@@ -29,4 +29,20 @@ public class SeatAvailability {
 		}
 		return false;
 	}
+	
+	public void loadSampleSeats() {
+		
+		String[] stands = {"North", "South", "East", "West"};
+		
+		for(String stand : stands) {
+			for(char row = 'A'; row <= 'Z'; row ++) {
+				for(int seatNumber = 1; seatNumber <= 20; seatNumber++) {
+					
+					String seat = stand + "-" + row + "-" + seatNumber;
+					
+					availableSeats.add(seat);
+				}
+			}
+		}
+	}
 }
