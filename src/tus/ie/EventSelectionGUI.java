@@ -275,12 +275,23 @@ public class EventSelectionGUI extends JFrame {
 			dayButton.setMargin(new Insets(2, 2, 2, 2));
 
 			boolean weekend = isWeekend(date);
-			
+
 			Calendar today = Calendar.getInstance();
+			today.set(Calendar.HOUR_OF_DAY, 0);
+			today.set(Calendar.MINUTE, 0);
+			today.set(Calendar.SECOND, 0);
+			today.set(Calendar.MILLISECOND, 0);
+			
+			Calendar checkDate = (Calendar) date.clone();
+			checkDate = (Calendar) date.clone();
+			checkDate.set(Calendar.HOUR_OF_DAY, 0);
+			checkDate.set(Calendar.MINUTE, 0);
+			checkDate.set(Calendar.SECOND, 0);
+			checkDate.set(Calendar.MILLISECOND, 0);
 			
 			boolean isPastDate = date.before(today);
 
-			if (weekend && ! isPastDate) {
+			if (weekend && !isPastDate) {
 				dayButton.setEnabled(true);
 				dayButton.setBackground(new Color(230, 240, 255));
 				dayButton.setForeground(BLUE);
@@ -376,13 +387,15 @@ public class EventSelectionGUI extends JFrame {
 
 	// Search Event
 	private void searchEvent() {
-		
+
 		String selectedEvent = (String) eventComboBox.getSelectedItem();
 		Date chosenDate = this.selectedDate.getTime();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String formattedDate = dateFormat.format(chosenDate);
-		
-		JOptionPane.showMessageDialog(this, "Event: " + selectedEvent + "\nDate: "  + formattedDate + "\n\nSearching for available seats...", "Event Selected", JOptionPane.INFORMATION_MESSAGE);
-		
+
+		JOptionPane.showMessageDialog(this,
+				"Event: " + selectedEvent + "\nDate: " + formattedDate + "\n\nSearching for available seats...",
+				"Event Selected", JOptionPane.INFORMATION_MESSAGE);
+
 	}
 }
