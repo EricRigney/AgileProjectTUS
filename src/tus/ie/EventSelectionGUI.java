@@ -216,28 +216,48 @@ public class EventSelectionGUI extends JFrame {
 
 		JLabel monthLabel = new JLabel(new SimpleDateFormat("MMMM yyyy").format(displayedMonth.getTime()),
 				SwingConstants.CENTER);
-		
+
 		monthLabel.setFont(new Font("SanSerif", Font.BOLD, 16));
 		monthLabel.setForeground(NAVY);
-		
+
 		previousButton.setFocusPainted(false);
 		nextButton.setFocusPainted(false);
-		
+
 		monthHeader.add(previousButton, BorderLayout.WEST);
 		monthHeader.add(monthLabel, BorderLayout.CENTER);
 		monthHeader.add(nextButton, BorderLayout.EAST);
-		
+
 		previousButton.addActionListener(e -> {
 			displayedMonth.add(Calendar.MONTH, -1);
 			updateCalendar();
 		});
-		
+
 		nextButton.addActionListener(e -> {
 			displayedMonth.add(Calendar.MONTH, -1);
 			updateCalendar();
 		});
-		
+
 		calendarPanel.add(monthHeader, BorderLayout.NORTH);
+
+		// Calendar Grid
+		JPanel grid = new JPanel(new GridLayout(0, 7, 4, 4));
+		grid.setBackground(Color.WHITE);
+		
+		String[] days = {"Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"};
+		
+		for(String day : days) {
+			JLabel dayLabel = new JLabel(day, SwingConstants.CENTER);
+			dayLabel.setFont(new Font("SanSerif", Font.BOLD, 11));
+			dayLabel.setForeground(GREY);
+			grid.add(dayLabel);
+		}
+		Calendar month = (Calendar) displayedMonth.clone();
+		month.set(Calendar.DAY_OF_MONTH, 1);
+		
+		// Convert Sundat-first Calendar format into Monday-first grid
+		int firstDay = month.get(Calendar.DAY_OF_WEEK);
+		int offset = (firstDay == Calendar.SUNDAY) ? 6 : firstDay - Calendar.MONDAY;
+		
 	}
 
 	// Style Label
