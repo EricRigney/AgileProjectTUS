@@ -254,10 +254,35 @@ public class EventSelectionGUI extends JFrame {
 		Calendar month = (Calendar) displayedMonth.clone();
 		month.set(Calendar.DAY_OF_MONTH, 1);
 		
-		// Convert Sundat-first Calendar format into Monday-first grid
+		// Convert Sunday-first Calendar format into Monday-first grid
 		int firstDay = month.get(Calendar.DAY_OF_WEEK);
 		int offset = (firstDay == Calendar.SUNDAY) ? 6 : firstDay - Calendar.MONDAY;
 		
+		for (int i = 0; i < offset; i++) {
+			grid.add(new JLabel(""));
+		}
+		
+		int daysInMonth = month.getActualMaximum(Calendar.DAY_OF_MONTH);
+		
+		for (int day = 1; day <= daysInMonth; day++) {
+			
+			Calendar date = (Calendar) month.clone();
+			date.set(Calendar.DAY_OF_MONTH, day);
+			
+			JButton dayButton = new JButton(String.valueOf(day));
+			
+			dayButton.setFocusPainted(false);
+			dayButton.setMargin(new Insets(2,2,2,2));
+			
+			boolean weekend = isWeekend(date);
+			
+			if (weekend) {
+				dayButton.setEnabled(true);
+				dayButton.setBackground(new Color(230,240,255));
+				dayButton.setForeground(BLUE);
+				dayButton.setToolTipText("Weekend date available for search");
+			}
+		}
 	}
 
 	// Style Label
