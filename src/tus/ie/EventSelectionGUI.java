@@ -242,10 +242,10 @@ public class EventSelectionGUI extends JFrame {
 		// Calendar Grid
 		JPanel grid = new JPanel(new GridLayout(0, 7, 4, 4));
 		grid.setBackground(Color.WHITE);
-		
-		String[] days = {"Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"};
-		
-		for(String day : days) {
+
+		String[] days = { "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun" };
+
+		for (String day : days) {
 			JLabel dayLabel = new JLabel(day, SwingConstants.CENTER);
 			dayLabel.setFont(new Font("SanSerif", Font.BOLD, 11));
 			dayLabel.setForeground(GREY);
@@ -253,36 +253,82 @@ public class EventSelectionGUI extends JFrame {
 		}
 		Calendar month = (Calendar) displayedMonth.clone();
 		month.set(Calendar.DAY_OF_MONTH, 1);
-		
+
 		// Convert Sunday-first Calendar format into Monday-first grid
 		int firstDay = month.get(Calendar.DAY_OF_WEEK);
 		int offset = (firstDay == Calendar.SUNDAY) ? 6 : firstDay - Calendar.MONDAY;
-		
+
 		for (int i = 0; i < offset; i++) {
 			grid.add(new JLabel(""));
 		}
-		
+
 		int daysInMonth = month.getActualMaximum(Calendar.DAY_OF_MONTH);
-		
+
 		for (int day = 1; day <= daysInMonth; day++) {
-			
+
 			Calendar date = (Calendar) month.clone();
 			date.set(Calendar.DAY_OF_MONTH, day);
-			
+
 			JButton dayButton = new JButton(String.valueOf(day));
-			
+
 			dayButton.setFocusPainted(false);
-			dayButton.setMargin(new Insets(2,2,2,2));
-			
+			dayButton.setMargin(new Insets(2, 2, 2, 2));
+
 			boolean weekend = isWeekend(date);
-			
+
 			if (weekend) {
 				dayButton.setEnabled(true);
-				dayButton.setBackground(new Color(230,240,255));
+				dayButton.setBackground(new Color(230, 240, 255));
 				dayButton.setForeground(BLUE);
 				dayButton.setToolTipText("Weekend date available for search");
+
+				// Highlight Selected Date
+				if (sameDate(date, selectedDate)) {
+					dayButton.setBackground(BLUE);
+					dayButton.setForeground(Color.WHITE);
+				}
+
+				// Hover Effect
+				dayButton.addMouseListener(new MouseAdapter() {
+
+					public void mouseEntered(MouseEvent e) {
+						if (dayButton.isEnabled()) {
+							dayButton.setBackground(HOVER_BLUE);
+						}
+					}
+
+					public void mouseExited(MouseEvent e) {
+						if (sameDate(date, selectedDate)) {
+							dayButton.setBackground(BLUE);
+							dayButton.setForeground(Color.WHITE);
+						} else {
+							dayButton.setBackground(new Color(230, 240, 255));
+							dayButton.setForeground(BLUE);
+						}
+					}
+				});
+
+				// Select Date
+				dayButton.addActionListener(e -> {
+					selectedDate = (Calendar) date.clone();
+
+					updateDateField();
+					calendarPopup.setVisible(false);
+				});
+			} else {
+
+				// Weekdays cannot be Selected
+				dayButton.setEnabled(false);
+				dayButton.setBackground(new Color(245, 245, 245));
+				dayButton.setForeground(new Color(180, 180, 180));
 			}
+			grid.add(dayButton);
 		}
+
+		calendarPanel.add(grid, BorderLayout.CENTER);
+
+		calendarPanel.revalidate();
+		calendarPanel.repaint();
 	}
 
 	// Style Label
