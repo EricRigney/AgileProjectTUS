@@ -58,4 +58,16 @@ public class SeatAvailability {
 		}
 		return standSeats;
 	}
+	
+	public static void main (String[] args) {
+		
+		SeatAvailability stadium = new SeatAvailability();
+		stadium.loadSampleSeats();
+		System.out.println(" Total available Seats: " + stadium.getAvailableSeats().size());
+		System.out.println(" North Stand Seats: " + stadium.getSeatsByStand("North").size());
+		System.out.println(" South Stand Seats: " + stadium.getSeatsByStand("South").size());
+		System.out.println(" East Stand Seats: " + stadium.getSeatsByStand("East").size());
+		System.out.println(" West Stand Seats: " + stadium.getSeatsByStand("West").size());
+
+	}
 }

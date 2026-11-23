@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -21,6 +22,8 @@ public class EventSelectionGUI extends JFrame {
 
 	private JPopupMenu calendarPopup;
 	private JPanel calendarPanel;
+
+	private SeatAvailability seatAvailability;
 
 	private final Color NAVY = new Color(18, 32, 58);
 	private final Color BLUE = new Color(45, 105, 230);
@@ -146,6 +149,10 @@ public class EventSelectionGUI extends JFrame {
 		searchButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		searchButton.setAlignmentX(Component.LEFT_ALIGNMENT);
 		searchButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
+
+		// Seat Availability
+		seatAvailability = new SeatAvailability();
+		seatAvailability.loadSampleSeats();
 
 		// Add Components
 		selectionCard.add(selection);
@@ -281,14 +288,14 @@ public class EventSelectionGUI extends JFrame {
 			today.set(Calendar.MINUTE, 0);
 			today.set(Calendar.SECOND, 0);
 			today.set(Calendar.MILLISECOND, 0);
-			
+
 			Calendar checkDate = (Calendar) date.clone();
 			checkDate = (Calendar) date.clone();
 			checkDate.set(Calendar.HOUR_OF_DAY, 0);
 			checkDate.set(Calendar.MINUTE, 0);
 			checkDate.set(Calendar.SECOND, 0);
 			checkDate.set(Calendar.MILLISECOND, 0);
-			
+
 			boolean isPastDate = date.before(today);
 
 			if (weekend && !isPastDate) {
@@ -392,10 +399,12 @@ public class EventSelectionGUI extends JFrame {
 		Date chosenDate = this.selectedDate.getTime();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String formattedDate = dateFormat.format(chosenDate);
+		
+		ArrayList<String> availableSeats = seatAvailability.getAvailableSeats();
 
 		JOptionPane.showMessageDialog(this,
-				"Event: " + selectedEvent + "\nDate: " + formattedDate + "\n\nSearching for available seats...",
-				"Event Selected", JOptionPane.INFORMATION_MESSAGE);
+				"Event: " + selectedEvent + "\nDate: " + formattedDate + "\n\nTotal Available Seats: " 
+		+ availableSeats.size() + "\n\nAvailable seats: \n" + availableSeats,"Seat Availability", JOptionPane.INFORMATION_MESSAGE);
 
 	}
 }
