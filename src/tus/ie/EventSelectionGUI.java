@@ -344,6 +344,13 @@ public class EventSelectionGUI extends JFrame {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		dateField.setText(dateFormat.format(selectedDate.getTime()));
 	}
+	
+	// Check Weekend
+	private boolean isWeekend(Calendar date) {
+
+		int day = date.get(Calendar.DAY_OF_WEEK);
+		return day == Calendar.SATURDAY || day == Calendar.SUNDAY;
+	}
 
 	// Date Validation
 	private boolean isWeekend(Date date) {
