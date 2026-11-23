@@ -31,7 +31,7 @@ public class EventSelectionGUI extends JFrame {
 	public EventSelectionGUI() {
 
 		setTitle("EventPass -Find Tickets");
-		setSize(600, 450);
+		setSize(600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
