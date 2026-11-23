@@ -12,11 +12,11 @@ import java.util.Date;
 public class EventSelectionGUI extends JFrame {
 
 	private JComboBox<String> eventComboBox;
-	private JSpinner dateSpinner;
+	private JTextField dateField;
 	private JButton calendarButton;
 	private JButton searchButton;
 
-	private Calendar displayedDate;
+	private Calendar selectedDate;
 	private Calendar displayedMonth;
 
 	private JPopupMenu calendarPopup;
@@ -112,7 +112,7 @@ public class EventSelectionGUI extends JFrame {
 		dateField = new JTextField();
 		dateField.setEditable(false);
 		dateField.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		dateField.setBorder(BorderFactory.createCompundBorder(BorderFactory.createLineBorder(new Color(210, 218, 230)),
+		dateField.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(210, 218, 230)),
 				new EmptyBorder(8, 10, 8, 10)));
 		updateDateField();
 
@@ -188,7 +188,7 @@ public class EventSelectionGUI extends JFrame {
 	// Create Calendar Popup
 	private void createCalendarPopup() {
 
-		calendarPopup = newJPopupMenu();
+		calendarPopup = new JPopupMenu();
 		calendarPopup.setBorder(BorderFactory.createLineBorder(new Color(210, 218, 230)));
 
 		calendarPanel = new JPanel(new BorderLayout(5, 5));
@@ -205,7 +205,7 @@ public class EventSelectionGUI extends JFrame {
 	// Update Calendar Display
 	private void updateCalendar() {
 
-		calendarPanel.removeALL();
+		calendarPanel.removeAll();
 
 		// Calendar Header
 		JPanel monthHeader = new JPanel(new BorderLayout());
@@ -233,7 +233,7 @@ public class EventSelectionGUI extends JFrame {
 		});
 
 		nextButton.addActionListener(e -> {
-			displayedMonth.add(Calendar.MONTH, -1);
+			displayedMonth.add(Calendar.MONTH, 1);
 			updateCalendar();
 		});
 
@@ -275,8 +275,12 @@ public class EventSelectionGUI extends JFrame {
 			dayButton.setMargin(new Insets(2, 2, 2, 2));
 
 			boolean weekend = isWeekend(date);
+			
+			Calendar today = Calendar.getInstance();
+			
+			boolean isPastDate = date.before(today);
 
-			if (weekend) {
+			if (weekend && ! isPastDate) {
 				dayButton.setEnabled(true);
 				dayButton.setBackground(new Color(230, 240, 255));
 				dayButton.setForeground(BLUE);
@@ -344,12 +348,20 @@ public class EventSelectionGUI extends JFrame {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		dateField.setText(dateFormat.format(selectedDate.getTime()));
 	}
-	
+
 	// Check Weekend
 	private boolean isWeekend(Calendar date) {
 
 		int day = date.get(Calendar.DAY_OF_WEEK);
 		return day == Calendar.SATURDAY || day == Calendar.SUNDAY;
+	}
+
+	// Compare Dates
+	private boolean sameDate(Calendar date1, Calendar date2) {
+
+		return date1.get(Calendar.YEAR) == date2.get(Calendar.YEAR)
+				&& date1.get(Calendar.MONTH) == date2.get(Calendar.MONTH)
+				&& date1.get(Calendar.DAY_OF_MONTH) == date2.get(Calendar.DAY_OF_MONTH);
 	}
 
 	// Date Validation
@@ -362,24 +374,15 @@ public class EventSelectionGUI extends JFrame {
 		return day == java.util.Calendar.SATURDAY || day == java.util.Calendar.SUNDAY;
 	}
 
-	// Search Label
+	// Search Event
 	private void searchEvent() {
-
-		Date selectedDate = (Date) dateSpinner.getValue();
-		if (!isWeekend(selectedDate)) {
-			JOptionPane.showMessageDialog(this, "Please select an Available date", "Invalid Date",
-					JOptionPane.WARNING_MESSAGE);
-
-			return;
-		}
-
+		
 		String selectedEvent = (String) eventComboBox.getSelectedItem();
+		Date chosenDate = this.selectedDate.getTime();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		String formattedDate = dateFormat.format(selectedDate);
-
-		JOptionPane.showMessageDialog(this,
-				"Event: " + selectedEvent + "\nDate: " + formattedDate + "\n\nSearching for available seats...",
-				"Evebt Selected", JOptionPane.INFORMATION_MESSAGE);
-
+		String formattedDate = dateFormat.format(chosenDate);
+		
+		JOptionPane.showMessageDialog(this, "Event: " + selectedEvent + "\nDate: "  + formattedDate + "\n\nSearching for available seats...", "Event Selected", JOptionPane.INFORMATION_MESSAGE);
+		
 	}
 }
