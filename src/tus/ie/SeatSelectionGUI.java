@@ -38,7 +38,7 @@ public class SeatSelectionGUI extends JFrame {
 	private final Color GREY = new Color(180, 180, 180);
 	private final Color LIGHT = new Color(245, 247, 252);
 
-	public SeatSelectionGUI(String eventName, String eventDate, SeatAvailability seatAvailbility) {
+	public SeatSelectionGUI(String eventName, String eventDate, SeatAvailability seatAvailability) {
 
 		this.eventName = eventName;
 		this.eventDate = eventDate;
@@ -64,7 +64,7 @@ public class SeatSelectionGUI extends JFrame {
 		titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
 		titleLabel.setForeground(Color.WHITE);
 
-		JLabel eventLabel = new JLabel(eventName + " | " + eventDate + SwingConstants.CENTER);
+		JLabel eventLabel = new JLabel(eventName + " | " + eventDate, SwingConstants.CENTER);
 		eventLabel.setFont(new Font("Arial", Font.BOLD, 15));
 		eventLabel.setForeground(Color.WHITE);
 
@@ -99,11 +99,11 @@ public class SeatSelectionGUI extends JFrame {
 		mainPanel.add(controlPanel, BorderLayout.NORTH);
 
 		// Seats Panel
-		JPanel seatsPanel = new JPanel(new GridLayout(4, 5, 10, 10));
+		seatsPanel = new JPanel(new GridLayout(4, 5, 10, 10));
 		seatsPanel.setBackground(Color.WHITE);
 		seatsPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-		JScrollPane scrollPane = new JScrollPane(seatPanel);
+		JScrollPane scrollPane = new JScrollPane(seatsPanel);
 		scrollPane.setBorder(BorderFactory.createLineBorder(GREY));
 
 		mainPanel.add(scrollPane, BorderLayout.CENTER);
@@ -130,7 +130,7 @@ public class SeatSelectionGUI extends JFrame {
 		// Event Listeners
 		standComboBox.addActionListener(e -> updateSeats());
 		rowComboBox.addActionListener(e -> updateSeats());
-		bookButton.addActionListener(e -> updateSeats());
+		bookButton.addActionListener(e -> bookSelectedSeats());
 
 		updateSeats();
 	}
