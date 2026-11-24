@@ -127,6 +127,75 @@ public class SeatSelectionGUI extends JFrame{
 		
 		add(mainPanel, BorderLayout.CENTER);
 		
+		// Event Listeners
+		standComboBox.addActionListener(e -> updateSeats());
+		rowComboBox.addActionListener(e -> updateSeats());
+		bookButton.addActionListener(e -> updateSeats());
+		
+		updateSeats();
+	}
+	
+	private void updateSeats() {
+		
+		seatsPanel.removeAll();
+		
+		String stand = (String) standComboBox.getSelectedItem();
+		String row = (String) rowComboBox.getSelectedItem();
+		
+		if(stand == null || row == null) {
+			return;
+		}
+		
+		for(int seatNumber = 1; seatNumber <= 20; seatNumber++) {
+			
+			String seatID = stand + "-" + row + "-" + seatNumber;
+			
+			JButton seatButton = new JButton(String.valueOf(seatNumber));
+			seatButton.setFont(new Font("Arial", Font.BOLD, 12));
+			seatButton.setFocusPainted(false);
+			
+			if (selectedSeats.contains(seatID)) {
+				
+				seatButton.setBackground(BLUE);
+				seatButton.setForeground(Color.WHITE);
+			
+			}else if (seatAvailability.isSeatAvailable(seatID)) {
+				
+				seatButton.setBackground(GREEN);
+				seatButton.setForeground(Color.WHITE);
+			
+			}else {
+				
+				seatButton.setBackground(GREY);
+				seatButton.setForeground(Color.WHITE);
+				seatButton.setEnabled(false);
+			}
+			
+			seatButton.addActionListener(e -> {
+				
+				if (selectedSeats.contains(seatID)) {
+					selectedSeats.remove(seatID);	
+				} else {
+					selectedSeats.add(seatID);
+				}
+				
+				updateSeats();
+				updateSelectionLabel();
+			});
+			
+			seatsPanel.add(seatButton);
+		}
+		
+		seatsPanel.revalidate();
+		seatsPanel.repaint();
+		
+		updateSelectionLabel();
+	}
+	
+	private void updateSelectionLabel() {
+		
+		selectionLabel.setText("Selected seats: " + selectedSeats.size());
 		
 	}
+	
 }
