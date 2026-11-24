@@ -37,4 +37,23 @@ public class SeatSelectionGUI extends JFrame{
 	private final Color BLUE = new Color(45, 105, 230);
 	private final Color GREY = new Color(180, 180, 180);
 	private final Color LIGHT = new Color(245, 247, 252);
+	
+	public SeatSelectionGUI(String eventName, String eventDate, SeatAvailability seatAvailbility) {
+		
+		this.eventName = eventName;
+		this.eventDate = eventDate;
+		this.seatAvailability = seatAvailability;
+		
+		selectedSeats = new ArrayList<>();
+		
+		setTitle("EventPass - Seat Selection");
+		setSize(850,650);
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		
+		setLayout(new BorderLayout());
+		
+	}
 }
