@@ -396,15 +396,15 @@ public class EventSelectionGUI extends JFrame {
 	private void searchEvent() {
 
 		String selectedEvent = (String) eventComboBox.getSelectedItem();
-		Date chosenDate = this.selectedDate.getTime();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		String formattedDate = dateFormat.format(chosenDate);
 		
-		ArrayList<String> availableSeats = seatAvailability.getAvailableSeats();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String formattedDate = dateFormat.format(selectedDate.getTime());
+		
+		//ArrayList<String> availableSeats = seatAvailability.getAvailableSeats();
 
-		JOptionPane.showMessageDialog(this,
-				"Event: " + selectedEvent + "\nDate: " + formattedDate + "\n\nTotal Available Seats: " 
-		+ availableSeats.size() + "\n\nAvailable seats: \n" + availableSeats,"Seat Availability", JOptionPane.INFORMATION_MESSAGE);
-
-	}
+		SeatSelectionGUI seatWindow = new SeatSelectionGUI(
+				selectedEvent, formattedDate, seatAvailability);
+		
+		seatWindow.setVisible(true);
+	}			
 }
