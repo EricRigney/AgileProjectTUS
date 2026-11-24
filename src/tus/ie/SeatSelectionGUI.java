@@ -97,5 +97,15 @@ public class SeatSelectionGUI extends JFrame{
 		controlPanel.add(rowComboBox);
 		
 		mainPanel.add(controlPanel, BorderLayout.NORTH);
+		
+		// Seats Panel
+		JPanel seatsPanel = new JPanel(new GridLayout(4,5,10,10));
+		seatsPanel.setBackground(Color.WHITE);
+		seatsPanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+	
+		JScrollPane scrollPane = new JScrollPane(seatPanel);
+		scrollPane.setBorder(BorderFactory.createLineBorder(GREY));
+		
+		mainPanel.add(scrollPane, BorderLayout.CENTER);
 	}
 }
