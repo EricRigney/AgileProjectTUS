@@ -55,5 +55,22 @@ public class SeatSelectionGUI extends JFrame{
 		
 		setLayout(new BorderLayout());
 		
+		// Seat Header
+		JPanel seatPanel = new JPanel(new GridLayout(2,1));
+		seatPanel.setBackground(NAVY);
+		seatPanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+		
+		JLabel titleLabel = new JLabel("EVENT PASS", SwingConstants.CENTER);
+		titleLabel.setFont( new Font("Arial", Font.BOLD,30));
+		titleLabel.setForeground(Color.WHITE);
+		
+		JLabel eventLabel = new JLabel(eventName + " | " + eventDate + SwingConstants.CENTER);
+		eventLabel.setFont( new Font("Arial", Font.BOLD,15));
+		eventLabel.setForeground(Color.WHITE);
+		
+		seatPanel.add(titleLabel);
+		seatPanel.add(eventLabel);
+		
+		add(seatPanel, BorderLayout.NORTH);
 	}
 }
