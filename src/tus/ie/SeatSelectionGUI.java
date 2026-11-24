@@ -24,8 +24,8 @@ public class SeatSelectionGUI extends JFrame{
 	private JComboBox<String> standComboBox;
 	private JComboBox<String> rowComboBox;
 
-	private JPanel seatPanel;
-	private JLabel selectLabel;
+	private JPanel seatsPanel;
+	private JLabel selectionLabel;
 	
 	private ArrayList<String> selectedSeats;
 	
@@ -107,5 +107,23 @@ public class SeatSelectionGUI extends JFrame{
 		scrollPane.setBorder(BorderFactory.createLineBorder(GREY));
 		
 		mainPanel.add(scrollPane, BorderLayout.CENTER);
+		
+		// Bottom Panel
+		JPanel bottomPanel = new JPanel(new BorderLayout());
+		bottomPanel.setBackground(LIGHT);
+		bottomPanel.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
+		
+		selectionLabel = new JLabel("Selected seats: 0");
+		selectionLabel.setFont(new Font("Arial", Font.BOLD, 16));
+		
+		JButton bookButton = new JButton("Book Selected Seats");
+		bookButton.setFont(new Font("Arial", Font.BOLD, 16));
+		bookButton.setForeground(BLUE);
+		
+		mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+		
+		add(mainPanel, BorderLayout.CENTER);
+		
+		
 	}
 }
