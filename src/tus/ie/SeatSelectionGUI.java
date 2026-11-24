@@ -72,5 +72,30 @@ public class SeatSelectionGUI extends JFrame{
 		seatPanel.add(eventLabel);
 		
 		add(seatPanel, BorderLayout.NORTH);
+		
+		// Main Panel
+		JPanel mainPanel = new JPanel(new BorderLayout(15,15));
+		mainPanel.setBackground(LIGHT);
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+	
+		// Control Panel
+		JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.LEFT,15,15));
+		controlPanel.setBackground(LIGHT);
+		
+		standComboBox = new JComboBox<> ( new String [] {"North", "South", "East", "West"});
+		
+		rowComboBox = new JComboBox<>();
+		
+		for (char row = 'A'; row <= 'Z'; row++) {
+			rowComboBox.addItem(String.valueOf(row));
+		}
+		
+		controlPanel.add(new JLabel("Select Stand"));
+		controlPanel.add(standComboBox);
+		
+		controlPanel.add(new JLabel("Select row"));
+		controlPanel.add(rowComboBox);
+		
+		mainPanel.add(controlPanel, BorderLayout.NORTH);
 	}
 }
