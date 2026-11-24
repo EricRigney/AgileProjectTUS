@@ -120,6 +120,9 @@ public class SeatSelectionGUI extends JFrame{
 		bookButton.setFont(new Font("Arial", Font.BOLD, 16));
 		bookButton.setForeground(BLUE);
 		
+		bottomPanel.add(selectionLabel, BorderLayout.WEST);
+		bottomPanel.add(bookButton, BorderLayout.EAST);
+
 		mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 		
 		add(mainPanel, BorderLayout.CENTER);
