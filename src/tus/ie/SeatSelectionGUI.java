@@ -229,33 +229,55 @@ public class SeatSelectionGUI extends JFrame {
 
 				JOptionPane.showMessageDialog(this, "Sorry, seat" + seat + " is no longer available",
 						"Seat Unavailable", JOptionPane.WARNING_MESSAGE);
-			
-			updateSeats();
+
+				updateSeats();
+				return;
+			}
+		}
+
+		// Display payment confirmation
+		String message = "Booking Details\n\n" + "Event:" + eventName + "\n" + "Date:" + eventDate + "\n" + "Seats:"
+				+ selectedSeats + "\n" + "Ticket Type:" + (vip ? "VIP" : "Standard") + "\n\n" + "Total Cost: "
+				+ String.format("%.2f", total) + "\n" + "Current Balance: "
+				+ String.format("%.2f", paymentProcessor.getBalance()) + "\n\nConfirm Payment?";
+
+		int confirm = JOptionPane.showConfirmDialog(this, message, "Confrim Payment", JOptionPane.YES_NO_CANCEL_OPTION);
+
+		if (confirm != JOptionPane.YES_OPTION) {
 			return;
+		}
+
+		// Process Payment
+		boolean paymentSuccessful = paymentProcessor.processPayment(total);
+
+		if (!paymentSuccessful) {
+
+			JOptionPane.showMessageDialog(this,
+					"Payment declined! Insufficent balance.\n" + "Your current balance is "
+							+ String.format("%.2f", paymentProcessor.getBalance()),
+					"Payment Failed", JOptionPane.ERROR_MESSAGE);
+			
+			return;
+		}
+		
+		// Book seats after successful payment
+		int bookedCount = 0;
+
+		for (String seat : selectedSeats) {
+
+			if (seatAvailability.bookSeat(seat)) {
+				bookedCount++;
 			}
 		}
 
-		int confirm = JOptionPane.showConfirmDialog(this,
-				"Book" + selectedSeats.size() + "seats(s)?\n\n" + selectedSeats, "Confirm Booking",
-				JOptionPane.YES_NO_OPTION);
+		selectedSeats.clear();
+		updateSeats();
+		
+		vipCheckBox.setSelected(false);
+		
 
-		if (confirm == JOptionPane.YES_OPTION) {
-
-			int bookedCount = 0;
-
-			for (String seat : selectedSeats) {
-
-				if (seatAvailability.bookSeat(seat)) {
-					bookedCount++;
-				}
-			}
-
-			selectedSeats.clear();
-			updateSeats();
-
-			JOptionPane.showMessageDialog(this, bookedCount + " seat(s) booked successfully!", "Bookimng Successfully",
-					JOptionPane.INFORMATION_MESSAGE);
-		}
-
+		JOptionPane.showMessageDialog(this, "Payment successful!\n\n " + bookedCount + " seat(s) booked successfully!.\n" + "Remaining Balance: " + String.format("%.2f", paymentProcessor.getBalance()), "Booking Successfully",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
+
 }
