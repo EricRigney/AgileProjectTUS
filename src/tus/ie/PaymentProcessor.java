@@ -63,11 +63,22 @@ public class PaymentProcessor {
 	}
 
 	public double getBalance() {
-		return 0;
+		return balance;
 	}
 
 	public boolean processPayment(double amount) {
-		return false;
+
+		if (amount <= 0) {
+			return false;
+		}
+
+		if (amount > balance) {
+			return false;
+		}
+
+		balance -= amount;
+
+		return true;
 	}
 
 }
