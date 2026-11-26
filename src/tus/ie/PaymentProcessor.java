@@ -17,7 +17,15 @@ public class PaymentProcessor {
 		double total = 0;
 		
 		for(String seat : selectedSeats) {
+			total += calculateTicketPrice(seat, vip);
+		}
 		
+		return total;
+	}
+		
+	private double calculateTicketPrice(String seat, boolean vip) {
+		
+	
 		if (seat == null || seat.trim().isEmpty()) {
 			throw new IllegalArgumentException("Invalid seat");
 
@@ -29,10 +37,9 @@ public class PaymentProcessor {
 			throw new IllegalArgumentException("Invalid seat format.");
 		}
 		
-		String stand = details[0];
 		double price;
 		
-		switch (stand) {
+		switch (details[0]) {
 		case "North":
 		case "South":
 			price = NORTH_SOUTH_PRICE;
@@ -51,10 +58,7 @@ public class PaymentProcessor {
 			price += VIP_EXTRA;
 		}
 		
-		total += price;
-	
-	}
-	return total;
+	return price;
 }
 
 }
