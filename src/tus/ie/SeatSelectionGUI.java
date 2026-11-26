@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.JCheckBox;
 
 public class SeatSelectionGUI extends JFrame {
 
@@ -28,6 +29,9 @@ public class SeatSelectionGUI extends JFrame {
 	private JLabel selectionLabel;
 
 	private ArrayList<String> selectedSeats;
+
+	private JCheckBox vipCheckBox;
+	private PaymentProcessor paymentProcessor = new PaymentProcessor();
 
 	private String eventName;
 	private String eventDate;
@@ -95,6 +99,9 @@ public class SeatSelectionGUI extends JFrame {
 
 		controlPanel.add(new JLabel("Select row"));
 		controlPanel.add(rowComboBox);
+
+		vipCheckBox = new JCheckBox("VIP (+ 50 euro per ticket");
+		vipCheckBox.setBackground(LIGHT);
 
 		mainPanel.add(controlPanel, BorderLayout.NORTH);
 
@@ -208,6 +215,24 @@ public class SeatSelectionGUI extends JFrame {
 					JOptionPane.WARNING_MESSAGE);
 
 			return;
+		}
+
+		// Calculate the ticket price
+		boolean vip = vipCheckBox.isSelected();
+
+		double total = paymentProcessor.calculateTotal(selectedSeats, vip);
+
+		// Check that all selected seats are still available
+		for (String seat : selectedSeats) {
+
+			if (!seatAvailability.isSeatAvailable(seat)) {
+
+				JOptionPane.showMessageDialog(this, "Sorry, seat" + seat + " is no longer available",
+						"Seat Unavailable", JOptionPane.WARNING_MESSAGE);
+			
+			updateSeats();
+			return;
+			}
 		}
 
 		int confirm = JOptionPane.showConfirmDialog(this,
