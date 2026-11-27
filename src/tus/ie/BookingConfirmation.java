@@ -53,4 +53,23 @@ public class BookingConfirmation {
 
 
 	}
+	
+	private String getGateNumber(String seat) {
+		
+		String stand = seat.split("-")[0];
+		
+		switch (stand) {
+		case "North":
+			return "Gate 1";
+		case "South":
+			return "Gate 2";
+		case "East":
+			return "Gate 3";
+		case "West":
+			return "Gate 4";
+			default:
+				return "Gate not assigned";
+		}
+	}
+	
 }
