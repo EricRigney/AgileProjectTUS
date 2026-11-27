@@ -25,4 +25,32 @@ public class BookingConfirmation {
 	public String getBookingReference() {
 		return bookingReference;
 	}
+	
+	public String generateConfirmation() {
+		
+		StringBuilder confirmation = new StringBuilder();
+		
+		confirmation.append("EventPass - BOOKING CONFIRMATION\n\n");
+		confirmation.append("Bookinhg Reference: ").append("bookingReference: ").append(bookingReference).append("\n\n");
+		
+		confirmation.append("Event: ").append(eventName).append("\n");
+		confirmation.append("Date: ").append(eventDate).append("\n");
+		confirmation.append("Ticket Quantity: ").append(seats.size()).append("\n");
+		confirmation.append("Total Cost: ").append(String.format("%.2f", totalCost)).append("\n\n");
+		
+		confirmation.append("DIGITAL TICKETS\n\n");
+		
+		for (String seat : seats) {
+			
+			confirmation.append("Seat: ").append(seat).append("\n");
+			confirmation.append("Gate: ").append(getGateNumber(seat)).append("\n\n");
+			
+		}
+		
+		confirmation.append("Thnank you for booking with EventPass!");
+		
+		return confirmation.toString();
+
+
+	}
 }
