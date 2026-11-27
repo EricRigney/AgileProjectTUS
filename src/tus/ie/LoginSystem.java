@@ -217,7 +217,7 @@ public class LoginSystem extends JFrame {
 			JOptionPane.showMessageDialog(this, "Welcome " + username + "!\nYour login was successful.",
 					"Login Successful", JOptionPane.INFORMATION_MESSAGE);
 
-			EventSelectionGUI eventWindow = new EventSelectionGUI();
+			EventSelectionGUI eventWindow = new EventSelectionGUI(username);
 			eventWindow.setVisible(true);
 			
 			dispose(); // Close the Login Window

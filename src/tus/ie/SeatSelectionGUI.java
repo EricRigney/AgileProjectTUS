@@ -35,6 +35,7 @@ public class SeatSelectionGUI extends JFrame {
 
 	private String eventName;
 	private String eventDate;
+	private String loggedInUser;
 
 	private final Color NAVY = new Color(18, 32, 58);
 	private final Color GREEN = new Color(76, 175, 80);
@@ -42,11 +43,12 @@ public class SeatSelectionGUI extends JFrame {
 	private final Color GREY = new Color(180, 180, 180);
 	private final Color LIGHT = new Color(245, 247, 252);
 
-	public SeatSelectionGUI(String eventName, String eventDate, SeatAvailability seatAvailability) {
+	public SeatSelectionGUI(String eventName, String eventDate, SeatAvailability seatAvailability, String loggedInUser) {
 
 		this.eventName = eventName;
 		this.eventDate = eventDate;
 		this.seatAvailability = seatAvailability;
+		this.loggedInUser = loggedInUser;
 
 		selectedSeats = new ArrayList<>();
 

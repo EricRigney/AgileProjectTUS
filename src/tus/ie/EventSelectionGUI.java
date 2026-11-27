@@ -22,6 +22,8 @@ public class EventSelectionGUI extends JFrame {
 
 	private JPopupMenu calendarPopup;
 	private JPanel calendarPanel;
+	
+	private String loggedInUser;
 
 	private SeatAvailability seatAvailability;
 
@@ -31,7 +33,9 @@ public class EventSelectionGUI extends JFrame {
 	private final Color GREY = new Color(105, 116, 135);
 	private final Color HOVER_BLUE = new Color(220, 235, 255);
 
-	public EventSelectionGUI() {
+	public EventSelectionGUI(String loggedInUser) {
+		
+		this.loggedInUser = loggedInUser;
 
 		setTitle("EventPass -Find Tickets");
 		setSize(600, 600);
@@ -403,7 +407,7 @@ public class EventSelectionGUI extends JFrame {
 		//ArrayList<String> availableSeats = seatAvailability.getAvailableSeats();
 
 		SeatSelectionGUI seatWindow = new SeatSelectionGUI(
-				selectedEvent, formattedDate, seatAvailability);
+				selectedEvent, formattedDate, seatAvailability, loggedInUser);
 		
 		seatWindow.setVisible(true);
 	}			
