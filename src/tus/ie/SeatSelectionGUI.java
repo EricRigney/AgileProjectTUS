@@ -104,6 +104,8 @@ public class SeatSelectionGUI extends JFrame {
 
 		vipCheckBox = new JCheckBox("VIP (+ 50 euro per ticket");
 		vipCheckBox.setBackground(LIGHT);
+		
+		controlPanel.add(vipCheckBox);
 
 		mainPanel.add(controlPanel, BorderLayout.NORTH);
 
