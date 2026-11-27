@@ -41,7 +41,7 @@ public class TicketManager {
 		ArrayList<ResaleTicket> resaleTickets = new ArrayList<>();
 
 		for (ResaleTicket ticket : tickets) {
-			if (ticket.isAvailableForResale()) {
+			if (ticket.getAvailableForResale()) {
 				resaleTickets.add(ticket);
 			}
 		}
@@ -96,7 +96,7 @@ public class TicketManager {
 
 				writer.println(ticket.getTicketID() + "," + ticket.getEventName() + "," + ticket.getEventDate() + ","
 						+ ticket.getSeatID() + "," + ticket.getOriginalPrice() + "," + ticket.getOwnerUsername() + ","
-						+ ticket.isAvailableForResale());
+						+ ticket.getAvailableForResale());
 			}
 
 		} catch (IOException e) {
@@ -123,14 +123,14 @@ public class TicketManager {
 
 				if (details.length == 7) {
 
-					ResaleTicket ticket = new ResaleTicket(details[1], details[2], details[3],
-							Double.parseDouble(details[4]), details[5]);
+					ResaleTicket ticket = new ResaleTicket(details[0], details[1], details[2], details[3],
+							Double.parseDouble(details[4]), details[5], Boolean.parseBoolean(details[6]));
 
 					tickets.add(ticket);
 				}
 
 			}
-			
+
 		} catch (IOException | NumberFormatException e) {
 			System.out.println("Error loading tickets: " + e.getMessage());
 		}

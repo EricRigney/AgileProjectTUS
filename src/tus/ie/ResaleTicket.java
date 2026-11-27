@@ -11,17 +11,28 @@ public class ResaleTicket {
 	private double originalPrice;
 	private String ownerUsername;
 	private boolean availableForResale;
-
-	public ResaleTicket(String eventName, String eventDate, String seatID, double originalPrice, String ownerUsername) {
-
-		this.ticketID = "TKT-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-
+	
+	public ResaleTicket( String eventName, String eventDate, String seatID, double originalPrice, String ownerUsername, boolean availableForResale) {
+		
+		this.ticketID = "TKT-" + UUID.randomUUID().toString().substring(0,8).toUpperCase();
+		
 		this.eventName = eventName;
 		this.eventDate = eventDate;
 		this.seatID = seatID;
 		this.originalPrice = originalPrice;
 		this.ownerUsername = ownerUsername;
-		this.availableForResale = false;
+		this.availableForResale = availableForResale;
+	}
+	
+	public ResaleTicket(String ticketID, String eventName, String eventDate, String seatID, double originalPrice, String ownerUsername, boolean availableForResale) {
+
+		this.ticketID = ticketID;
+		this.eventName = eventName;
+		this.eventDate = eventDate;
+		this.seatID = seatID;
+		this.originalPrice = originalPrice;
+		this.ownerUsername = ownerUsername;
+		this.availableForResale = availableForResale;
 	}
 
 	public String getTicketID() {
