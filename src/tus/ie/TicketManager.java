@@ -48,5 +48,22 @@ public class TicketManager {
 		
 		return resaleTickets;
 	}
-
+	
+	// List a ticket for resale
+	public boolean listTicket(String ticketID, String username, double resalePrice) {
+		
+		for (ResaleTicket ticket : tickets) {
+			
+			if(ticket.getTicketID().equals(ticketID) && ticket.getOwnerUsername().equals(username)) {
+				
+				ticket.listForResale(resalePrice);
+				saveTickets();
+				
+				return true;
+			}
+		}
+		
+		return false;
+		
+	}
 }
