@@ -256,10 +256,10 @@ public class SeatSelectionGUI extends JFrame {
 					"Payment declined! Insufficent balance.\n" + "Your current balance is "
 							+ String.format("%.2f", paymentProcessor.getBalance()),
 					"Payment Failed", JOptionPane.ERROR_MESSAGE);
-			
+
 			return;
 		}
-		
+
 		// Book seats after successful payment
 		int bookedCount = 0;
 
@@ -270,14 +270,28 @@ public class SeatSelectionGUI extends JFrame {
 			}
 		}
 
+		// Generate Booking Confirmation
+		if (bookedCount == selectedSeats.size()) {
+			BookingConfirmation confirmation = new BookingConfirmation(eventName, eventDate, selectedSeats, total);
+
+			String confirmationDetails = confirmation.generateConfirmation();
+
+			JOptionPane.showMessageDialog(this,
+					confirmationDetails + "\n\nRemaining Balance: "
+							+ String.format("%.2f", paymentProcessor.getBalance()),
+					"Booking Confirmation - " + confirmation.getBookingReference(), JOptionPane.INFORMATION_MESSAGE);
+		} else {
+
+			JOptionPane.showMessageDialog(this,
+					bookedCount + "of" + selectedSeats.size() + " seats were booked. "
+							+ " Please contract support regarding " + " the incomplete booking -",
+					"Booking Issue", JOptionPane.WARNING_MESSAGE);
+		}
+
 		selectedSeats.clear();
 		updateSeats();
-		
-		vipCheckBox.setSelected(false);
-		
 
-		JOptionPane.showMessageDialog(this, "Payment successful!\n\n " + bookedCount + " seat(s) booked successfully!.\n" + "Remaining Balance: " + String.format("%.2f", paymentProcessor.getBalance()), "Booking Successfully",
-				JOptionPane.INFORMATION_MESSAGE);
+		vipCheckBox.setSelected(false);
 	}
 
 }
