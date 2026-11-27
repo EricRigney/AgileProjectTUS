@@ -98,10 +98,41 @@ public class TicketManager {
 						+ ticket.getSeatID() + "," + ticket.getOriginalPrice() + "," + ticket.getOwnerUsername() + ","
 						+ ticket.isAvailableForResale());
 			}
-			
+
 		} catch (IOException e) {
 			System.out.println("Error saving tickets: " + e.getMessage());
 		}
 	}
 
+	// Load tickets from file
+	private void loadTickets() {
+
+		File file = new File(FILE_NAME);
+
+		if (!file.exists()) {
+			return;
+		}
+
+		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+
+			String line;
+
+			while ((line = reader.readLine()) != null) {
+
+				String[] details = line.split(",", -1);
+
+				if (details.length == 7) {
+
+					ResaleTicket ticket = new ResaleTicket(details[1], details[2], details[3],
+							Double.parseDouble(details[4]), details[5]);
+
+					tickets.add(ticket);
+				}
+
+			}
+			
+		} catch (IOException | NumberFormatException e) {
+			System.out.println("Error loading tickets: " + e.getMessage());
+		}
+	}
 }
