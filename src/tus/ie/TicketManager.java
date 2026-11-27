@@ -45,25 +45,48 @@ public class TicketManager {
 				resaleTickets.add(ticket);
 			}
 		}
-		
+
 		return resaleTickets;
 	}
-	
+
 	// List a ticket for resale
 	public boolean listTicket(String ticketID, String username, double resalePrice) {
-		
+
 		for (ResaleTicket ticket : tickets) {
-			
-			if(ticket.getTicketID().equals(ticketID) && ticket.getOwnerUsername().equals(username)) {
-				
+
+			if (ticket.getTicketID().equals(ticketID) && ticket.getOwnerUsername().equals(username)) {
+
 				ticket.listForResale(resalePrice);
 				saveTickets();
-				
+
 				return true;
+			}
+		}
+
+		return false;
+
+	}
+
+	// Purchase a resale ticket
+	public boolean purchaseTicket(String ticketID, String newOwnerUsername) {
+
+		for (ResaleTicket ticket : tickets) {
+
+			if (ticket.getTicketID().equals(ticketID)) {
+
+				boolean purchased = ticket.purchaseResaleTicket(newOwnerUsername);
+
+				if (purchased) {
+					saveTickets();
+				}
+				
+				return purchased;
 			}
 		}
 		
 		return false;
-		
 	}
+	
+	
+
 }
