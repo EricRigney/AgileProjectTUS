@@ -276,6 +276,29 @@ public class SeatSelectionGUI extends JFrame {
 
 		// Generate Booking Confirmation
 		if (bookedCount == selectedSeats.size()) {
+			
+			// Save each purchased ticket
+			TicketManager ticketManager = new TicketManager();
+			
+			for (String seat : selectedSeats) {
+				
+				double ticketPrice;
+				
+				if (seat.startsWith("North-") || seat.startsWith("South-")) {
+					ticketPrice = 50;
+				} else {
+					ticketPrice = 100;
+				}
+				
+				if (vip) {
+					ticketPrice += 50;
+				}
+				
+				ResaleTicket ticket = new ResaleTicket( eventName, eventDate, seat, ticketPrice, loggedInUser, false);
+				
+				ticketManager.addTicket(ticket);
+			}
+			
 			BookingConfirmation confirmation = new BookingConfirmation(eventName, eventDate, selectedSeats, total);
 
 			String confirmationDetails = confirmation.generateConfirmation();
