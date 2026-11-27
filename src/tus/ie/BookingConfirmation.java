@@ -31,7 +31,7 @@ public class BookingConfirmation {
 		StringBuilder confirmation = new StringBuilder();
 		
 		confirmation.append("EventPass - BOOKING CONFIRMATION\n\n");
-		confirmation.append("Bookinhg Reference: ").append("bookingReference: ").append(bookingReference).append("\n\n");
+		confirmation.append("Booking Reference: ").append(bookingReference).append("\n\n");
 		
 		confirmation.append("Event: ").append(eventName).append("\n");
 		confirmation.append("Date: ").append(eventDate).append("\n");
@@ -47,7 +47,7 @@ public class BookingConfirmation {
 			
 		}
 		
-		confirmation.append("Thnank you for booking with EventPass!");
+		confirmation.append("Thank you for booking with EventPass!");
 		
 		return confirmation.toString();
 
