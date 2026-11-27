@@ -38,7 +38,7 @@ public class EventSelectionGUI extends JFrame {
 		this.loggedInUser = loggedInUser;
 
 		setTitle("EventPass -Find Tickets");
-		setSize(600, 600);
+		setSize(600, 650);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -175,7 +175,25 @@ public class EventSelectionGUI extends JFrame {
 		selectionCard.add(Box.createVerticalStrut(30));
 
 		selectionCard.add(searchButton);
-
+		
+		// My Tickets Button
+		JButton myTicketsButton = new JButton("My Tickets");
+		myTicketsButton.setFont(new Font("SanSerif", Font.BOLD, 15));
+		myTicketsButton.setBackground(NAVY);
+		myTicketsButton.setForeground(Color.WHITE);
+		myTicketsButton.setFocusPainted(false);
+		myTicketsButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		myTicketsButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+		myTicketsButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
+		
+		selectionCard.add(Box.createVerticalStrut(15));
+		selectionCard.add(myTicketsButton);
+		
+		myTicketsButton.addActionListener(e -> {
+			MyTicketsGUI ticketsWindow = new MyTicketsGUI(loggedInUser);
+			ticketsWindow.setVisible(true);
+		});
+		
 		// Card Container
 		JPanel cardContainer = new JPanel(new BorderLayout());
 		cardContainer.setBackground(LIGHT);

@@ -1,0 +1,2 @@
+TKT-BFC92292, Barcelona vs Real Madrid - La Liga,29/11/2026,North-A-18,50.0,admin,false
+TKT-475665E6,Taylor Swift - Concert,28/11/2026,East-A-5,100.0,admin,false
