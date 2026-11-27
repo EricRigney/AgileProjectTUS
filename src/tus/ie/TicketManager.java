@@ -79,14 +79,29 @@ public class TicketManager {
 				if (purchased) {
 					saveTickets();
 				}
-				
+
 				return purchased;
 			}
 		}
-		
+
 		return false;
 	}
-	
-	
+
+	// Save tickets to file
+	private void saveTickets() {
+
+		try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
+
+			for (ResaleTicket ticket : tickets) {
+
+				writer.println(ticket.getTicketID() + "," + ticket.getEventName() + "," + ticket.getEventDate() + ","
+						+ ticket.getSeatID() + "," + ticket.getOriginalPrice() + "," + ticket.getOwnerUsername() + ","
+						+ ticket.isAvailableForResale());
+			}
+			
+		} catch (IOException e) {
+			System.out.println("Error saving tickets: " + e.getMessage());
+		}
+	}
 
 }
